@@ -1,0 +1,9 @@
+applications:
+- path: .
+  memory: 256M
+  instances: 1
+  disk_quota: 512M
+  name: ucidepot-dev
+  routes:
+    # - route: ucidepot-dev.mybluemix.net
+ 
