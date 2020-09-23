@@ -1,0 +1,60 @@
+{
+    "INSERT_PRODUTO": {
+        "success": {
+            "status": 200,
+            "message": "Product inserted with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Error when inserting the product"
+        }
+    },
+    "GET_ALL_PRODUTO": {
+        "success": {
+            "status": 200,
+            "message": "All produto retrived with success"
+        },
+        "error": {
+            "status": "Error when retriving all produto"
+        }
+    },
+    "GET_PRODUTO_BY_ID": {
+        "success": {
+            "status": 200,
+            "message": "Product by id retrived with success"
+        },
+        "error": {
+            "status": "Error when retriving product by id"
+        }
+    },
+    "REMOVE_PRODUTO": {
+        "success": {
+            "status": 200,
+            "message": "Product removed with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Error when removing product"
+        }
+    },
+    "UPDATE_PRODUTO": {
+        "success": {
+            "status": 200,
+            "message": "Product updated with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Error when updating product"
+        }
+    },
+    "UPDATE_QUANTIDADE_PRODUTO":{
+        "success": {
+            "status": 200,
+            "message": "Quantidade updated with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Error when updating quantidade"
+        }
+    }
+}

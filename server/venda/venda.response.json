@@ -1,0 +1,22 @@
+{
+    "INSERT_VENDA": {
+        "success": {
+            "status": 200,
+            "message": "Venda inserted with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Erro when inserting venda"
+        }
+    },
+    "GET_ALL_VENDA": {
+        "success": {
+            "status": 200,
+            "message": "All venda retrived with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Erro when retriving all venda"
+        }
+    }
+}

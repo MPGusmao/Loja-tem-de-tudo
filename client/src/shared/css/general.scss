@@ -1,14 +1,223 @@
-@import '~./colors.scss';
+// @import "~./_colors.scss";
+@import "./colors.scss";
+// @import "~@node_modules/ibm-icon-font/css/ibmicons.css";
+//@import '~@node_modules/ibm-icon-font/css/ibmicons.css';
 
-html, body {
-    width: 100%;
-    height: 100%;
+// If you need to set colors:
+// Check colors.scss, it might be there
+// Import `@import '~@node_modules/ibm-design-colors/_ibm-colors.scss';` and use the mixins to get your colors.
+// For more info on ibm-design-colors (color-bee) module: https://github.com/IBM-Design/color-bee#for-development
 
-    padding: 0 !important;
-    margin: 0 !important;
-
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 16px;
-
-    background-color: $white;
+html,body {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 100%;
+  background-color: color("neutral white", 2);
 }
+.uci-app {
+  display: flex;
+  font-family: "IBM Plex Sans";
+  width: 100%;
+  background-color: $white;
+}
+.uci-app-item {
+  display: flex;
+  flex-flow: column;
+  background-color: $white;
+  width: 100%;
+}
+.uci-app-item-clean {
+  padding: 2rem;
+  background-color: $white;
+  width: 100%;
+}
+.uci-app-item-item {
+  flex-flow: column;
+  background-color: $white;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.uci-app-item-item-nav {
+  background-color: $white;
+}
+.uci-app-item-item-footer {
+  display: flex;
+  width: 100%;
+  height: 2.5rem;
+}
+@media screen and (min-width: 1024px) {
+  .uci-app-item-item-body {
+    display: flex;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 1023px) {
+  .uci-app-item-item-body {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+.uci-app-item-item-body-error {
+  display: flex;
+  background-color: $white;
+}
+.uci-app-item-item-body-left {
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 15rem;
+  flex-shrink: 0;
+}
+.uci-app-item-item-body-right {
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+  background-color: $white;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.uci-app-item-item-body-left-menu {
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 0;
+  background-color: $primary;
+}
+.uci-app-item-item-body-right-content {
+  padding: 2rem;
+  background-color: $white;
+  width: 100%;
+}
+.primary-button {
+  background-color: $primary;
+  color: $white;
+  border-color: $primary;
+  font-size: 1rem;
+}
+.primary-button-icon {
+  color: $white;
+  padding-right: 0.5rem;
+  font-size: 1.5rem;
+}
+.primary-button:hover {
+  background-color: $secundary;
+  color: $white;
+}
+.primary-button:focus {
+  background-color: $secundary;
+  color: $white;
+}
+.secundary-button {
+  background-color: $white;
+  color: $dark;
+  border-color: $background1;
+  font-size: 1rem;
+}
+.secundary-button-icon {
+  color: $dark;
+  padding-right: 0.5rem;
+  font-size: 1.5rem;
+}
+.secundary-button:hover {
+  border-color: $primary;
+  background-color: $white;
+  color: $dark;
+}
+.form {
+  display: flex;
+  width: 100%;
+  flex-flow: column;
+  min-height: calc(100vh - 9.9rem);
+}
+.form-header {
+  background-color: $soft;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.form-item {
+  display: flex;
+  background-color: $white;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.form-item-item {
+  display: flex;
+  align-items: center;
+}
+.form-sub-header {
+  display: flex;
+  color: $soft;
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+.form-title {
+  color: $soft;
+  font-size: 1.2rem;
+}
+.form-body {
+  display: flex;
+  background-color: $background1;
+  border-radius: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.form-body-item {
+  display: flex;
+  flex-wrap: wrap;
+}
+.form-body-item-title {
+  font-weight: bold;
+  border-style: solid;
+  border-color: $soft;
+  border-radius: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-width: 0.1rem;
+  color: $dark;
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.form-body-column {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  background-color: $soft;
+}
+.form-body-column-item {
+  display: flex;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.form-footer {
+  display: flex;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: $white;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: center;
+}
+.form-footer-button {
+  padding: 0.5rem;
+}
+.form-body-column-button {
+  display: flex;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: $background1;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: center;
+} 

@@ -1,0 +1,52 @@
+{
+    "INSERT_VENDEDOR": {
+        "success": {
+            "status": 200,
+            "message": "Vendedor inserted with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Error when inserting vendedor"
+        }
+    },
+    "GET_ALL_VENDEDOR": {
+        "success": {
+            "status": 200,
+            "message": "All vendedor retrived with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Error when retriving all vendedor"
+        }
+    },
+    "GET_VENDEDOR_BY_ID": {
+        "success": {
+            "status": 200,
+            "message": "Vendedor by id retrived with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Error when retriving vendedor by i"
+        }
+    },
+    "UPDATE_VENDEDOR": {
+        "success": {
+            "status": 200,
+            "message": "Vendedor updated with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Error when updating vendedor"
+        }
+    },
+    "GET_VENDEDOR_NAME": {
+        "success": {
+            "status": 200,
+            "message": "Vendedor name retrived with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Error when retriving vendedor name"
+        }
+    }
+}

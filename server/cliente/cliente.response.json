@@ -1,0 +1,62 @@
+{
+    "INSERT_CLIENTE": {
+        "success": {
+            "status": 200,
+            "message": "Cliente inserted with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Error when inserting the cliente"
+        }
+    },
+    "GET_ALL_CLIENTE": {
+        "success": {
+            "status": 200,
+            "message": "All cliente retrived with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Error when retriving all cliente"
+        }
+    },
+    "GET_CLIENTE_BY_ID":{
+        "success": {
+            "status": 200,
+            "message": "Cliente by id retrived with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Error when retriving cliente by id"
+        }
+    },
+    "UPDATE_CLIENTE":{
+        "success": {
+            "status": 200,
+            "message": "Cliente updated with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Error when updating cliente"
+        }
+    },
+    "REMOVE_CLIENTE":{
+        "success": {
+            "status": 200,
+            "message": "Cliente removed with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Error when removing cliente"
+        }
+    },
+    "NAME_CLIENTE":{
+        "success": {
+            "status": 200,
+            "message": "Name cliente retrived with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Error when retriving name cliente"
+        }
+    }
+}

@@ -1,8 +1,8 @@
 applications:
 - path: .
-  memory: 256M
+  memory: 512M 
   instances: 1
   disk_quota: 512M
-  name: ucidepot-uat
+  name: lojavirtual-uat
   routes:
-    # - route: ucidepot-uat.mybluemix.net
+    - route: lojavirtual-uat.mybluemix.net

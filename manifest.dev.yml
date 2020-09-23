@@ -5,5 +5,5 @@ applications:
   disk_quota: 512M
   name: ucidepot-dev
   routes:
-    # - route: ucidepot-dev.mybluemix.net
+    - route: ucidepot-dev.mybluemix.net
  

@@ -1,3 +1,20 @@
+// @import '~@node_modules/ibm-design-colors/_ibm-colors.scss';
+
+$warning: color('yellow', 20);
+$dark: color('gray', 70);
+$soft: color('gray', 40);
+$white: color('white', 0);
+$black: color('black', 100);
+$required: color('red', 50);
+$backrequired: color('red', 10);
+$primary: color('cerulean', 80);
+$secundary: color('cerulean', 70);
+$link: color('cerulean', 60);
+$input: color('gray', 70);
+$background1: color('gray', 1);
+$background2: color('neutral white', 3);
+$softblue: color('cerulean', 10);
+
 $blue: #4178BE;
 $dark-blue: #2A5B82;
 $blue-10: #EBEFF1;
@@ -15,6 +32,8 @@ $grey-60: #586464;
 $grey-70: #3C4646;
 
 $white: #ffffff;
-
+$white1: #eee;
+$soft: #fafafa;;
+$soft1: #f1f1f1;
 $grey-highlight: #F6F8F8;
 $grey-highlight-pressed: darken($grey-highlight, 5%);
