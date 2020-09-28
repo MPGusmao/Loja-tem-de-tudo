@@ -3,12 +3,16 @@
     <router-link class="nav-bar-item" to="/">
       <span class="nav-bar-item-text">Loja tem de tudo</span>
     </router-link>
+    <Menu :href="'/produtos'" :nameButton="'Produtos'" />
+    <Menu :href="'/vendas'" :nameButton="'Vendas'" />
   </div>
 </template>
 <script>
+import Menu from "../Menu/Menu.vue";
 export default {
   name: "NavBar",
   components: {
+    Menu,
   },
 };
 </script>
