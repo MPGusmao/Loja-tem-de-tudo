@@ -29,7 +29,7 @@ export default {
 .menu-item-button-button {
   display: flex;
   background-color: #0076ff;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   border-radius: 0.3rem;
   padding: 0.2rem;
   color: $white;
