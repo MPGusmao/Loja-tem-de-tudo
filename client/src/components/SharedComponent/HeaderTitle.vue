@@ -22,7 +22,6 @@ export default {
   border-right: solid 1rem white;
 }
 .header-title-item {
-  font-size: 2rem;
-  color: black;
+  font-size: 3rem;
 }
 </style>
