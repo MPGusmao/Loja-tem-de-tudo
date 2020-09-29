@@ -1,9 +1,9 @@
 <template>
   <div class="nav-bar">
     <router-link class="nav-bar-item" to="/">
-      <span class="nav-bar-item-text">Loja tem de tudo</span>
+      <span class="nav-bar-item-text">Tem de tudo</span>
     </router-link>
-    <Menu :href="'/produtos'" :nameButton="'Produtos'" />
+    <Menu :href="'/produto'" :nameButton="'Produtos'" />
     <Menu :href="'/vendas'" :nameButton="'Vendas'" />
   </div>
 </template>
@@ -28,7 +28,7 @@ export default {
   padding-right: 0.5rem;
 }
 .nav-bar-item-text {
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: black;
   padding-left: 0.5rem;
 }
