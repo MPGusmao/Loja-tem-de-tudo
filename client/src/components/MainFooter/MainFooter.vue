@@ -15,10 +15,10 @@ export default {
   background-color: #ededed;
   justify-content: center;
   text-align: center;
+  margin-top: 0.5rem;
 }
 .footer-item {
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 2rem;
   color: black;
 }
 </style>
