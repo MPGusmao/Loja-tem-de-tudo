@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import ProdutoForm from './Components/Produto/ProdutoForm.vue'
 import Produto from './components/Produto/Produto.vue'
+import VendedorForm from './components/Vendedor/VendedorForm.vue'
 
 
 Vue.use(Router);
@@ -18,6 +19,11 @@ const router = new Router({
             path: '/',
             name: 'Produto',
             component: Produto
+        },
+        {
+            path: '/vendedorform',
+            name: 'VendedorForm',
+            component: VendedorForm
         }
     ]
 });
