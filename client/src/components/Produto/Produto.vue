@@ -14,7 +14,7 @@
           />
         </div>
         <div class="form-body-content-item">
-          <div v-for="(item, index) in produto" :key="index">
+          <div v-for="(item, index) in data" :key="index">
             <ProdutoItem :item="item" />
           </div>
         </div>
@@ -25,6 +25,7 @@
 <script>
 import ProdutoItem from "../Produto/ProdutoItem.vue";
 import InputField from "../SharedComponent/InputField.vue";
+import axios from "axios";
 export default {
   nam: "Produto",
   components: {
@@ -33,58 +34,18 @@ export default {
   },
   data() {
     return {
-      produto: [
-        {
-          categoria: "Papelaria",
-          produto: "Lapis de cor azul",
-          descricao: "Lapis de cor azul caixa com 20 unidades",
-          valor: "R$ 20,00",
-        },
-        {
-          categoria: "Decoracao",
-          produto: "Abajur",
-          descricao: "Abajur com duas lampadas",
-          valor: "R$ 35,00",
-        },
-        {
-          categoria: "Papelaria",
-          produto: "Lapis de cor azul",
-          descricao: "Lapis de cor azul caixa com 20 unidades",
-          valor: "R$ 20,00",
-        },
-        {
-          categoria: "Papelaria",
-          produto: "Lapis de cor vermelho",
-          descricao: "Lapis de cor vermelho caixa com 20 unidades",
-          valor: "R$ 20,00",
-        },
-        {
-          categoria: "Papelaria",
-          produto: "Lapis de cor vermelho",
-          descricao: "Lapis de cor vermelho caixa com 20 unidades",
-          valor: "R$ 20,00",
-        },
-        {
-          categoria: "Papelaria",
-          produto: "Lapis de cor vermelho",
-          descricao: "Lapis de cor vermelho caixa com 20 unidades",
-          valor: "R$ 20,00",
-        },
-        {
-          categoria: "Papelaria",
-          produto: "Lapis de cor vermelho",
-          descricao: "Lapis de cor vermelho caixa com 20 unidades",
-          valor: "R$ 20,00",
-        },
-        {
-          categoria: "Papelaria",
-          produto: "Lapis de cor vermelho",
-          descricao: "Lapis de cor vermelho caixa com 20 unidades",
-          valor: "R$ 20,00",
-        },
-      ],
       data: {},
     };
+  },
+  mounted() {
+    axios
+      .get("/api/produto/all")
+      .then((result) => {
+        this.data = result.data.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 </script>

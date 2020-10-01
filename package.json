@@ -19,9 +19,13 @@
     "author": "Manoel Pereira",
     "license": "ISC",
     "dependencies": {
-        "body-parser": "^1.18.2",
+        "axios": "^0.20.0",
+        "body-parser": "^1.19.0",
+        "dotenv": "^8.2.0",
         "eslint-plugin-vue": "^4.7.1",
         "express": "^4.16.3",
+        "express-interceptor": "^1.2.0",
+        "ibm_db": "^2.7.1",
         "log4js": "^6.3.0",
         "vue": "^2.5.16",
         "vue-router": "^3.0.1"
