@@ -1,9 +1,22 @@
 <template>
-  <div class="form-card">
-    <div class="form-card-content">
-      <div class="form-card-body">
-        <div v-for="(item, index) in produto" :key="index">
-          <ProdutoItem :item="item" />
+  <div class="form-">
+    <div class="form-body">
+      <div class="form-body-content">
+        <div class="form-body-content-item">
+          <InputField
+            :type="'search'"
+            v-model="data.search"
+            :placeholder="'Pesquisar Prduto'"
+            @input="
+              '';
+
+            "
+          />
+        </div>
+        <div class="form-body-content-item">
+          <div v-for="(item, index) in produto" :key="index">
+            <ProdutoItem :item="item" />
+          </div>
         </div>
       </div>
     </div>
@@ -70,12 +83,40 @@ export default {
           valor: "R$ 20,00",
         },
       ],
+      data: {},
     };
   },
 };
 </script>
 <style lang="scss">
-.form-card {
+.form {
+  display: flex;
+  width: 100%;
+  flex-flow: column;
+}
+.form-body {
+  display: flex;
+  background-color: white;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  flex-direction: column;
+  border-top: solid 0.1rem white;
+  align-content: center;
+  width: 100%;
+}
+.form-body-content {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  background-color: #ededed;
+}
+.form-body-content-item {
+  display: flex;
+  padding-top: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.form {
   display: flex;
 }
 .form-card-header {

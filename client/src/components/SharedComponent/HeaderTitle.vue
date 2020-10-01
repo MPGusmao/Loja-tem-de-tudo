@@ -17,11 +17,9 @@ export default {
   display: flex;
   background-color: #ededed;
   justify-content: center;
-  border-top: solid 0.5rem white;
-  border-left: solid 1rem white;
-  border-right: solid 1rem white;
+  border-top: solid 0.1rem white;
 }
 .header-title-item {
-  font-size: 3rem;
+  font-size: 2.6rem;
 }
 </style>

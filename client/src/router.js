@@ -3,6 +3,9 @@ import Router from 'vue-router';
 import ProdutoForm from './Components/Produto/ProdutoForm.vue'
 import Produto from './components/Produto/Produto.vue'
 import VendedorForm from './components/Vendedor/VendedorForm.vue'
+import Venda from './components/Venda/Venda.vue'
+import RealizarVenda from './components/Venda/RealizarVenda.vue'
+import RelatorioVenda from './components/Venda/RelatorioVenda.vue'
 
 
 Vue.use(Router);
@@ -24,6 +27,21 @@ const router = new Router({
             path: '/vendedorform',
             name: 'VendedorForm',
             component: VendedorForm
+        },
+        {
+            path: '/venda',
+            name: 'Venda',
+            component: Venda
+        },
+        {
+            path: '/realizarvenda',
+            name: 'RealizarVenda',
+            component: RealizarVenda
+        },
+        {
+            path: '/relatoriovenda',
+            name: 'RelatorioVenda',
+            component: RelatorioVenda
         }
     ]
 });

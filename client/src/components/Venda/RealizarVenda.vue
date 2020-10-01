@@ -1,28 +1,48 @@
 <template>
   <div class="form">
     <div class="form-header">
-      <HeaderTitle :title="'Novo Produto'" />
+      <HeaderTitle :title="'Realizar Venda'" />
     </div>
     <div class="form-body">
       <div class="form-body-content">
         <div class="form-body-content-item">
-          <InputField :label="'Nome do Produto'" />
-          <InputField :label="'Descrição'" />
+          <SelectField
+            :labelButton="'Incluir Clientes'"
+            :label="'Nome do Cliente'"
+            :selectOptions="clientes"
+            :hasButton="true"
+            :href="'/clienteform'"
+            v-model="data.cliente"
+          />
         </div>
         <div class="form-body-content-item">
-          <InputField :label="'Marca'" />
-          <InputField :label="'Fornecedor'" />
+          <SelectField
+            :labelButton="'Incluir Vendedor'"
+            :label="'Nome do Vendedor'"
+            :selectOptions="vendedores"
+            :hasButton="true"
+            :href="'/vendedorform'"
+            v-model="data.vendedor"
+          />
         </div>
-      </div>
-      <div class="form-body-content">
         <div class="form-body-content-item">
-          <InputField :label="'Classificação'" />
-          <InputField :type="'number'" :label="'Preço Custo'" />
-        </div>
-        <div class="form-body-content-item">
-          <InputField :type="'number'" :label="'Preço Custo'" />
-          <InputField :type="'number'" :label="'Quantidade de Estoque'" />
-          <InputField :type="'number'" :label="'Quantidade na Loja'" />
+          <SelectField
+            :label="'Produto'"
+            :selectOptions="produtos"
+            v-model="produtos"
+          />
+          <InputField
+            v-if="produtos"
+            :type="'number'"
+            :label="'Quantidade'"
+            v-model="data.quantidade"
+          />
+          <InputField
+            v-if="data.quantidade"
+            :type="'number'"
+            :label="'Total R$'"
+            :readOnly="true"
+          />
         </div>
         <div class="form-footer">
           <div class="form-footer-button">
@@ -30,28 +50,29 @@
               <span>Salvar</span>
             </button>
           </div>
-          <div v-show="data.ID" class="form-footer-button">
-            <button class="button">
-              <span>Excluir Produto</span>
-            </button>
-          </div>
         </div>
       </div>
     </div>
   </div>
-</template>
+</template> 
 <script>
 import HeaderTitle from "../SharedComponent/HeaderTitle.vue";
+import SelectField from "../SharedComponent/SelectField.vue";
 import InputField from "../SharedComponent/InputField.vue";
 export default {
-  name: "ProdutoForm",
+  name: "RealizarVenda",
   components: {
     HeaderTitle,
+    SelectField,
     InputField,
   },
   data() {
     return {
+      clientes: ["", "Manoel"],
+      vendedores: ["", "Joao"],
       data: {},
+      produtos: ["", "lapis de cor azul"],
+      quantidade: [],
     };
   },
 };
@@ -76,16 +97,16 @@ export default {
   flex-direction: column;
   width: 50%;
   background-color: #ededed;
+  flex-grow: 1;
 }
 .form-body-content-item {
   display: flex;
 }
 .form-footer {
   display: flex;
-  background-color: #ededed;
-  justify-content: center;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  // justify-content: center;
+  // margin-left: 1rem;
+  // margin-right: 1rem;
 }
 .form-footer-button {
   font-size: 1rem;
@@ -102,6 +123,7 @@ export default {
 }
 .button:hover {
   background-color: white;
+  border: solid 0rem #0076ff;
   color: #0076ff;
 }
 </style>

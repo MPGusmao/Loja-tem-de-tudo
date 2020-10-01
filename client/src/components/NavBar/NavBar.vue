@@ -4,7 +4,7 @@
       <span class="nav-bar-item-text">Tem de tudo</span>
     </router-link>
     <Menu :href="'/produto'" :nameButton="'Produtos'" />
-    <Menu :href="'/vendas'" :nameButton="'Vendas'" />
+    <Menu :href="'/venda'" :nameButton="'Vendas'" />
   </div>
 </template>
 <script>
@@ -28,7 +28,7 @@ export default {
   padding-right: 0.5rem;
 }
 .nav-bar-item-text {
-  font-size: 3rem;
+  font-size: 2.7rem;
   color: black;
   padding-left: 0.5rem;
 }

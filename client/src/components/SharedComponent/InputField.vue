@@ -1,10 +1,19 @@
 <template>
   <div class="input-field">
     <div class="input-field-content">
-      <div class="input-field-content-label">{{ label }}</div>
-    </div>
-    <div class="input-field-content">
-      <input class="input-field-input" :type="type" :value="value" />
+      <div class="input-field-content-item">
+        <label class="input-field-content-item-label">{{ label }}</label>
+      </div>
+      <div class="input-field-content-item">
+        <input
+          class="input-field-input"
+          :type="type"
+          :value="value"
+          @change="onChange"
+          :readOnly="readOnly"
+          :placeholder="placeholder"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -15,6 +24,14 @@ export default {
     label: { type: String, default: null },
     type: { type: String, default: "text" },
     value: { default: null },
+    readOnly: { type: Boolean, default: false },
+    placeholder: { type: String, default: null },
+  },
+  methods: {
+    //Needed to get the values
+    onChange(event) {
+      this.$emit("input", event.target.value);
+    },
   },
 };
 </script>
@@ -27,18 +44,30 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-left: 0.1rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  margin-top: 1rem;
 }
-.input-field-content-label {
+.input-field-content-item {
+  display: flex;
+}
+.input-field-content-item-label {
   font-size: 1.2rem;
 }
 .input-field-input {
-  display: flex;
-  width: 100%;
-  font-size: 1rem;
+  border-style: solid;
+  background-color: white;
+  border-color: black;
+  border-radius: 0;
   border-top: none;
-  border-right: none;
   border-left: none;
+  border-right: none;
+  border-width: 0.1rem;
   box-shadow: none;
+  color: black;
+  font-size: 1rem;
+  padding: 0.5rem;
+  width: 100%;
+  padding-right: 0.1rem;
 }
 </style>
