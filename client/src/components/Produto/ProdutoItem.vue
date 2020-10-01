@@ -2,10 +2,10 @@
   <router-link class="link" to="/produto">
     <div class="produto-card">
       <div class="produto-card-body">
-        <div class="produto-card-body-categoria">{{ item.categoria }}</div>
-        <div class="produto-card-body-item">{{ item.produto }}</div>
-        <div class="produto-card-body-item">{{ item.descricao }}</div>
-        <div class="produto-card-body-item">{{ item.valor }}</div>
+        <div class="produto-card-body-categoria">{{ item.CLASSIFICACAO }}</div>
+        <div class="produto-card-body-item">{{ item.NOME_PRODUTO }}</div>
+        <div class="produto-card-body-item">{{ item.DESCRICAO }}</div>
+        <div class="produto-card-body-item">{{'R$ '+  item.PRECO_VENDA }}</div>
       </div>
     </div>
   </router-link>
