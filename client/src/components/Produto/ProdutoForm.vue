@@ -1,47 +1,41 @@
 <template>
   <div class="form">
     <div class="form-header">
-      <HeaderTitle :title="'Cadastrar Produtos'" />
+      <HeaderTitle :title="'Novo Produto'" />
     </div>
     <div class="form-body">
-      <div class="form-body-item">
-        <InputField :label="'Nome do Produto'" />
+      <div class="form-body-content">
+        <div class="form-body-content-item">
+          <InputField :label="'Nome do Produto'" />
+          <InputField :label="'Descrição'" />
+        </div>
+        <div class="form-body-content-item">
+          <InputField :label="'Marca'" />
+          <InputField :label="'Fornecedor'" />
+        </div>
       </div>
-      <div class="form-body-item">
-        <InputField :label="'Descrição'" />
-      </div>
-      <div class="form-body-item">
-        <InputField :label="'Marca'" />
-      </div>
-      <div class="form-body-item">
-        <InputField :label="'Fornecedor'" />
-      </div>
-      <div class="form-body-item">
-        <InputField :label="'Classificação'" />
-      </div>
-      <div class="form-body-item">
-        <InputField :label="'Preço Custo'" />
-      </div>
-      <div class="form-body-item">
-        <InputField :label="'Preço de Venda'" />
-      </div>
-      <div class="form-body-item">
-        <InputField :type="'number'" :label="'Quantidade de Estoque'" />
-      </div>
-      <div class="form-body-item">
-        <InputField :type="'number'" :label="'Quantidade na Loja'" />
-      </div>
-    </div>
-    <div class="form-footer">
-      <div class="form-footer-button">
-        <button class="button">
-          <span>Salvar</span>
-        </button>
-      </div>
-      <div class="form-footer-button">
-        <button class="button">
-          <span>Cancelar</span>
-        </button>
+      <div class="form-body-content">
+        <div class="form-body-content-item">
+          <InputField :label="'Classificação'" />
+          <InputField :type="'number'" :label="'Preço Custo'" />
+        </div>
+        <div class="form-body-content-item">
+          <InputField :type="'number'" :label="'Preço Custo'" />
+          <InputField :type="'number'" :label="'Quantidade de Estoque'" />
+          <InputField :type="'number'" :label="'Quantidade na Loja'" />
+        </div>
+        <div class="form-footer">
+          <div class="form-footer-button">
+            <button class="button">
+              <span>Salvar</span>
+            </button>
+          </div>
+          <div v-show="data.ID" class="form-footer-button">
+            <button class="button">
+              <span>Excluir Produto</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -55,6 +49,11 @@ export default {
     HeaderTitle,
     InputField,
   },
+  data() {
+    return {
+      data: {},
+    };
+  },
 };
 </script>
 <style lang="scss">
@@ -65,18 +64,21 @@ export default {
 }
 .form-body {
   display: flex;
-  background-color: #ededed;
+  background-color: white;
   flex-wrap: wrap;
   flex-direction: column;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  border-top: solid 0.5rem white;
+  border-top: solid 0.1rem white;
   align-content: center;
+  width: 100%;
 }
-.form-body-item {
+.form-body-content {
   display: flex;
-  padding-top: 2rem;
-  margin-top: 0.5rem;
+  flex-direction: column;
+  width: 50%;
+  background-color: #ededed;
+}
+.form-body-content-item {
+  display: flex;
 }
 .form-footer {
   display: flex;
@@ -89,7 +91,7 @@ export default {
   font-size: 1rem;
 }
 .button {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   margin: 1rem;
   background-color: #0076ff;
   border-radius: 0.2rem;
@@ -100,7 +102,6 @@ export default {
 }
 .button:hover {
   background-color: white;
-  border: solid 0.1rem #0076ff;
   color: #0076ff;
 }
 </style>

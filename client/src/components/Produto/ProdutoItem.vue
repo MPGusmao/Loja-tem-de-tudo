@@ -37,6 +37,7 @@ export default {
   margin: 0.5rem;
   overflow: hidden;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 .produto-card-body-categoria {
   display: flex;
