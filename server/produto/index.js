@@ -5,6 +5,7 @@ module.exports = (Router) => {
     const router = Router()
 
     router.get('/all', controller.getAllProduct);
+    router.post('/create', controller.createProduct);
 
     return router
 }
