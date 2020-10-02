@@ -16,5 +16,35 @@
         "error": {
             "status": "Error when creating the product"
         }
+    },
+    "GET_PRODUCT_BY_ID": {
+        "success": {
+            "status": 200,
+            "message": "Product by id retrived with success"
+        },
+        "error": {
+            "status": 200,
+            "message": "Error when retriving the product by id"
+        }
+    },
+    "UPDATE_PRODUCT": {
+        "success": {
+            "status": 200,
+            "message": "Product updated with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Error when updating the product"
+        }
+    },
+    "REMOVE_PRODUCT":{
+        "success": {
+            "status": 200,
+            "message": "Product removed with success"
+        },
+        "error": {
+            "status": 400,
+            "message": "Error when removing the product"
+        }
     }
 }

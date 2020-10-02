@@ -22,6 +22,20 @@ const insertClient = async (connection, base, body) => {
     };
 };
 
+const getAllClients = async (connection, base) => {
+    try {
+        const query = `
+        SELECT 
+            NOME_CLIENTE
+        FROM 
+            ${base}.CLIENTE AS C;`;
+        const result = await connection.query(query)
+        return { data: result, ...responses.GET_ALL_CLIENTS.success };
+    } catch (error) {
+        return { error, ...responses.GET_ALL_CLIENTS.error };
+    };
+};
 module.exports = {
-    insertClient
+    insertClient,
+    getAllClients
 }

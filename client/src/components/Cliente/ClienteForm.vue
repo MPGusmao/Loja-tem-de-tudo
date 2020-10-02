@@ -32,7 +32,7 @@
         </button>
       </div>
       <div class="form-footer-button">
-        <button class="button">
+        <button class="button" @click="cancel()">
           <span>Cancelar</span>
         </button>
       </div>
@@ -67,7 +67,7 @@ export default {
         });
     },
     cancel() {
-      window.location.reload();
+      this.$router.push("/realizarvenda");
     },
   },
 };
@@ -170,7 +170,6 @@ export default {
 }
 .button:hover {
   background-color: white;
-  border: solid 0.1rem #0076ff;
   color: #0076ff;
 }
 </style> 

@@ -35,8 +35,7 @@ export default {
   color: $white;
 }
 .menu-item-button-button:hover {
-  border: solid 0.1rem #0076ff;
-  color: #0076ff;
   background-color: white;
+  color: #0076ff;
 }
 </style>

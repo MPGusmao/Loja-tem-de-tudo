@@ -1,7 +1,8 @@
 <template>
   <div class="form">
     <div class="form-header">
-      <HeaderTitle :title="'Novo Produto'" />
+      <HeaderTitle v-if="!this.data.ID" :title="'Novo Produto'" />
+      <HeaderTitle v-if="this.data.ID" :title="'Editar Produto'" />
     </div>
     <div class="form-body">
       <div class="form-body-content">
@@ -47,7 +48,7 @@
             </button>
           </div>
           <div v-show="data.ID" class="form-footer-button">
-            <button class="button">
+            <button class="button" @click="remove()">
               <span>Excluir Produto</span>
             </button>
           </div>
@@ -68,13 +69,23 @@ export default {
   },
   data() {
     return {
-      data: {},
+      data: {
+        id: this.$route.query.id,
+      },
     };
   },
   methods: {
     salvar() {
-      axios
-        .post("/api/produto/create", this.data)
+      const configAxios = {
+        method: "post",
+        data: this.data,
+      };
+      if (this.data.ID) {
+        configAxios.url = "/api/produto/update";
+      } else {
+        configAxios.url = "/api/produto/create";
+      }
+      axios(configAxios)
         .then((result) => {
           this.$router.push("/");
         })
@@ -82,6 +93,31 @@ export default {
           console.log(error);
         });
     },
+    remove() {
+      axios({
+        method: "post",
+        url: "/api/produto/remove",
+        data: this.$route.query,
+      })
+        .then((result) => {
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+  mounted() {
+    if (this.data.id) {
+      axios
+        .post("/api/produto/byid", this.data)
+        .then((result) => {
+          this.data = result.data.data[0];
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   },
 };
 </script>
