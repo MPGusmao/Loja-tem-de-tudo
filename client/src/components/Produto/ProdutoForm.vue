@@ -6,27 +6,43 @@
     <div class="form-body">
       <div class="form-body-content">
         <div class="form-body-content-item">
-          <InputField :label="'Nome do Produto'" />
-          <InputField :label="'Descrição'" />
+          <InputField :label="'Nome do Produto'" v-model="data.NOME_PRODUTO" />
+          <InputField :label="'Descrição'" v-model="data.DESCRICAO" />
         </div>
         <div class="form-body-content-item">
-          <InputField :label="'Marca'" />
-          <InputField :label="'Fornecedor'" />
+          <InputField :label="'Marca'" v-model="data.MARCA" />
+          <InputField :label="'Fornecedor'" v-model="data.FORNECEDOR" />
         </div>
       </div>
       <div class="form-body-content">
         <div class="form-body-content-item">
-          <InputField :label="'Classificação'" />
-          <InputField :type="'number'" :label="'Preço Custo'" />
+          <InputField :label="'Classificação'" v-model="data.CLASSIFICACAO" />
+          <InputField
+            :type="'number'"
+            :label="'Preço Custo'"
+            v-model="data.PRECO_CUSTO"
+          />
         </div>
         <div class="form-body-content-item">
-          <InputField :type="'number'" :label="'Preço Custo'" />
-          <InputField :type="'number'" :label="'Quantidade de Estoque'" />
-          <InputField :type="'number'" :label="'Quantidade na Loja'" />
+          <InputField
+            :type="'number'"
+            :label="'Preço Venda'"
+            v-model="data.PRECO_VENDA"
+          />
+          <InputField
+            :type="'number'"
+            :label="'Quantidade de Estoque'"
+            v-model="data.QTDE_ESTOQUE"
+          />
+          <InputField
+            :type="'number'"
+            :label="'Quantidade na Loja'"
+            v-model="data.QTDE_LOJA"
+          />
         </div>
         <div class="form-footer">
           <div class="form-footer-button">
-            <button class="button">
+            <button class="button" @click="salvar()">
               <span>Salvar</span>
             </button>
           </div>
@@ -43,6 +59,7 @@
 <script>
 import HeaderTitle from "../SharedComponent/HeaderTitle.vue";
 import InputField from "../SharedComponent/InputField.vue";
+import axios from "axios";
 export default {
   name: "ProdutoForm",
   components: {
@@ -53,6 +70,18 @@ export default {
     return {
       data: {},
     };
+  },
+  methods: {
+    salvar() {
+      axios
+        .post("/api/produto/create", this.data)
+        .then((result) => {
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>

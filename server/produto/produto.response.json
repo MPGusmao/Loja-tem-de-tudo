@@ -7,5 +7,14 @@
         "error": {
             "status": "Error when retriving all product"
         }
+    },
+    "CREATE_PRODUCT": {
+        "success": {
+            "status": 200,
+            "message": "Product created with success"
+        },
+        "error": {
+            "status": "Error when creating the product"
+        }
     }
 }
