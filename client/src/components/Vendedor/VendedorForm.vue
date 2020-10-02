@@ -1,27 +1,30 @@
 <template>
   <div class="modal">
     <div class="modal-header">
-      <HeaderTitle class="modal-header-label" :title="'Cadastrar Vendedor'" />
+      <HeaderTitle class="modal-header-label" :title="'Novo Vendedor'" />
     </div>
     <div class="modal-body">
       <div class="modal-body-item">
         <div class="modal-form-body-column">
           <div class="modal-form-column-item">
-            <InputField :label="'Nome do Vendedor'" />
+            <InputField
+              :label="'Nome do Vendedor'"
+              v-model="data.NOME_VENDEDOR"
+            />
           </div>
         </div>
       </div>
-    </div>
-    <div class="form-footer">
-      <div class="form-footer-button">
-        <button class="button">
-          <span>Salvar</span>
-        </button>
-      </div>
-      <div class="form-footer-button">
-        <button class="button">
-          <span>Cancelar</span>
-        </button>
+      <div class="form-footer">
+        <div class="form-footer-button">
+          <button class="button" @click="salvar()">
+            <span>Salvar</span>
+          </button>
+        </div>
+        <div class="form-footer-button">
+          <button class="button" @click="cancel()">
+            <span>Cancelar</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -30,6 +33,7 @@
 <script>
 import HeaderTitle from "../SharedComponent/HeaderTitle.vue";
 import InputField from "../SharedComponent/InputField.vue";
+import axios from "axios";
 export default {
   name: "VendedorForm",
   components: {
@@ -38,17 +42,22 @@ export default {
   },
   data() {
     return {
-      selectOptions: [],
-      newSelect: [],
-      checked: false,
+      data: {},
     };
   },
   methods: {
-    Generate() {
-      this.$emit("click", this.newSelect);
+    salvar() {
+      axios
+        .post("/api/vendedor/create", this.data)
+        .then((result) => {
+          this.$router.push("/realizarvenda");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     cancel() {
-      window.location.reload();
+      this.$router.push("/realizarvenda");
     },
   },
 };
@@ -73,24 +82,19 @@ export default {
   background-color: #ededed;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  width: 25%;
+  width: 50%;
   text-align: center;
   align-self: center;
 }
 .modal-header-label {
-  //   color: $white;
   border: 0rem;
 }
 .modal-body {
   display: flex;
   background-color: #ededed;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
   flex-wrap: wrap;
   flex-direction: column;
-  width: 25%;
-  height: 25%;
-  padding-left: 1rem;
+  width: 50%;
   box-sizing: border-box;
   align-self: center;
   justify-content: center;
@@ -102,6 +106,7 @@ export default {
 }
 .modal-form-body-column {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   background-color: #ededed;
   justify-content: center;
@@ -128,11 +133,11 @@ export default {
   background-color: #ededed;
   flex-wrap: wrap;
   align-self: center;
-  width: 25%;
+  width: 50%;
 }
 .form-footer {
   display: flex;
-  width: 25%;
+  width: 50%;
   background-color: #ededed;
   justify-content: center;
   margin-left: 1rem;
@@ -155,7 +160,6 @@ export default {
 }
 .button:hover {
   background-color: white;
-  border: solid 0.1rem #0076ff;
   color: #0076ff;
 }
 </style> 
