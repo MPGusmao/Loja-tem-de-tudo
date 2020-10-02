@@ -3,7 +3,7 @@
     <router-link class="nav-bar-item" to="/">
       <span class="nav-bar-item-text">Tem de tudo</span>
     </router-link>
-    <Menu :href="'/produto'" :nameButton="'Produtos'" />
+    <Menu :href="'/produtoform'" :nameButton="'Produtos'" />
     <Menu :href="'/venda'" :nameButton="'Vendas'" />
   </div>
 </template>
