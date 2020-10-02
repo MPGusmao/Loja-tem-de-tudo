@@ -1,0 +1,12 @@
+{
+    "INSERT_CLIENT": {
+        "success": {
+            "status": 200,
+            "message": "Client inserted with succes"
+        },
+        "error": {
+            "status": 400,
+            "message": "Error when inerting the client"
+        }
+    }
+}
