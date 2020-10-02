@@ -6,6 +6,9 @@ module.exports = (Router) => {
 
     router.get('/all', controller.getAllProduct);
     router.post('/create', controller.createProduct);
+    router.post('/byid', controller.getProductById);
+    router.post('/update', controller.updateProduct);
+    router.post('/remove', controller.removeProduct)
 
     return router
 }
