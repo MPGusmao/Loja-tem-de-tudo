@@ -7,16 +7,19 @@
       <div class="modal-body-item">
         <div class="modal-form-body-column">
           <div class="modal-form-column-item">
-            <InputField :label="'Nome do Cliente'" v-model="data.cliente" />
+            <InputField
+              :label="'Nome do Cliente'"
+              v-model="data.NOME_CLIENTE"
+            />
           </div>
           <div class="modal-form-column-item">
-            <InputField :label="'Endereco'" v-model="data.endereco" />
+            <InputField :label="'Endereco'" v-model="data.ENDERECO" />
           </div>
           <div class="modal-form-column-item">
             <InputField
               :type="'number'"
               :label="'Telefone'"
-              v-model="data.telefone"
+              v-model="data.TELEFONE"
             />
           </div>
         </div>
@@ -24,7 +27,7 @@
     </div>
     <div class="form-footer">
       <div class="form-footer-button">
-        <button class="button">
+        <button class="button" @click="salvar()">
           <span>Salvar</span>
         </button>
       </div>
@@ -40,6 +43,7 @@
 <script>
 import HeaderTitle from "../SharedComponent/HeaderTitle.vue";
 import InputField from "../SharedComponent/InputField.vue";
+import axios from "axios";
 export default {
   name: "ClienteForm",
   components: {
@@ -52,6 +56,16 @@ export default {
     };
   },
   methods: {
+    salvar() {
+      axios
+        .post("/api/cliente/create", this.data)
+        .then((result) => {
+          this.$router.push("/realizarvenda");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
     cancel() {
       window.location.reload();
     },
