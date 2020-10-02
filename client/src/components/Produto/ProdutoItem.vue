@@ -1,11 +1,14 @@
 <template>
-  <router-link class="link" to="/produto">
+  <router-link
+    class="link"
+    :to="{ name: 'ProdutoForm', query: { id: item.ID } }"
+  >
     <div class="produto-card">
       <div class="produto-card-body">
         <div class="produto-card-body-categoria">{{ item.CLASSIFICACAO }}</div>
         <div class="produto-card-body-item">{{ item.NOME_PRODUTO }}</div>
         <div class="produto-card-body-item">{{ item.DESCRICAO }}</div>
-        <div class="produto-card-body-item">{{'R$ '+  item.PRECO_VENDA }}</div>
+        <div class="produto-card-body-item">{{ "R$ " + item.PRECO_VENDA }}</div>
       </div>
     </div>
   </router-link>
@@ -15,6 +18,8 @@ export default {
   name: "ProdutoItem",
   props: {
     item: { type: Object },
+    route: { type: String },
+    routeName: { type: String },
   },
 };
 </script>
