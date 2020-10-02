@@ -5,6 +5,7 @@ module.exports = (Router) => {
     const router = Router()
 
     router.post('/create', controller.insertClient);
+    router.get('/all', controller.getAllClients);
 
     return router
 }
