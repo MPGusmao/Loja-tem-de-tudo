@@ -1,6 +1,6 @@
 <template>
     <div id="services-app">
-        Virtual Store Boilerplate
+        Loja tem de tudo Boilerplate
     </div>
 </template>
 <script>
