@@ -63,7 +63,6 @@ export default {
   height: 100%;
   width: 1000px;
   margin: auto;
-  justify-content: space-between;
   flex-wrap: wrap;
 }
 .produto-content-search {
