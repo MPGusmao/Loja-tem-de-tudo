@@ -1,14 +1,11 @@
 <template>
-  <router-link
-    class="link"
-    :to="{ name: 'ProdutoForm', query: { id: item.ID } }"
-  >
-    <div class="produto-card">
-      <div class="produto-card-body">
-        <div class="produto-card-body-categoria">{{ item.CLASSIFICACAO }}</div>
-        <div class="produto-card-body-item">{{ item.NOME_PRODUTO }}</div>
-        <div class="produto-card-body-item">{{ item.DESCRICAO }}</div>
-        <div class="produto-card-body-item">{{ "R$ " + item.PRECO_VENDA }}</div>
+  <router-link :to="href">
+    <div class="produtoitem">
+      <div class="produtoitem-content">
+        <div class="produtoitem-content-category">{{ item.categoria }}</div>
+        <div class="produtoitem-content-produto">{{ item.produto }}</div>
+        <div class="produtoitem-content-descricao">{{ item.descricao }}</div>
+        <div class="produtoitem-content-valor">{{ item.valor }}</div>
       </div>
     </div>
   </router-link>
@@ -18,24 +15,21 @@ export default {
   name: "ProdutoItem",
   props: {
     item: { type: Object },
-    route: { type: String },
-    routeName: { type: String },
+    href: { type: String, default: "#" },
   },
 };
 </script>
-<style lang="scss">
-.link {
-  text-decoration: none;
-}
-.produto-card {
+<style>
+.produtoitem {
   display: flex;
+  background-color: #e6e6e6;
   flex-direction: column;
-  width: 282px;
+  width: 320px;
   height: 160px;
-  background-color: #a3a1a1;
-  margin: 0.5rem;
+  border-radius: 0.3rem;
+  margin-bottom: 1rem;
 }
-.produto-card-body {
+.produtoitem-content {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -44,19 +38,30 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.produto-card-body-categoria {
+.produtoitem-content-category {
   display: flex;
-  flex-grow: 1;
-  font-size: 0.8rem;
+  align-self: flex-end;
+  color: blue;
   font-weight: bold;
-  color: black;
-  align-self: center;
 }
-.produto-card-body-item {
+.produtoitem-content-produto {
   display: flex;
-  flex-grow: 1;
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: black;
+}
+.produtoitem-content-descricao {
+  display: flex;
+  color: black;
+}
+.produtoitem-content-valor {
+  display: flex;
+  color: green;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.produtoitem:hover {
+  background-color: #f2f2f2;
+  box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem #e6e6e6;
 }
 </style>
