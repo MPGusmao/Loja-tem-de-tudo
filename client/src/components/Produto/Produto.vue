@@ -1,104 +1,75 @@
 <template>
-  <div class="form-">
-    <div class="form-body">
-      <div class="form-body-content">
-        <div class="form-body-content-item">
-          <InputField
-            :type="'search'"
-            v-model="data.search"
-            :placeholder="'Pesquisar Prduto'"
-            @input="
-              '';
-
-            "
-          />
-        </div>
-        <div class="form-body-content-item">
-          <div v-for="(item, index) in data" :key="index">
-            <ProdutoItem :item="item" />
-          </div>
-        </div>
+  <div class="produto">
+    <div class="produto-content">
+      <div class="produto-content-search">
+        <InputField :placeholder="'Pesquisar produto'" />
+      </div>
+      <div v-for="(item, index) in produtos" :key="index">
+        <ProdutoItem :item="item" />
       </div>
     </div>
   </div>
 </template>
 <script>
-import ProdutoItem from "../Produto/ProdutoItem.vue";
-import InputField from "../SharedComponent/InputField.vue";
-import axios from "axios";
+import ProdutoItem from "./ProdutoItem.vue";
+import InputField from "../SharedComponents/InputField.vue";
 export default {
-  nam: "Produto",
+  name: "Produto",
   components: {
     ProdutoItem,
     InputField,
   },
   data() {
     return {
-      data: {},
+      produtos: [
+        {
+          categoria: "Papelaria",
+          produto: "Caderno 10 materias",
+          descricao: "Caderno 10 materias 3 cores",
+          valor: "R$: 15,00",
+        },
+        {
+          categoria: "Papelaria",
+          produto: "Sulfite",
+          descricao: "Pacote de sulfites com 500 folhas",
+          valor: "R$: 25,00",
+        },
+        {
+          categoria: "Material",
+          produto: "Tinta Coral",
+          descricao: "Tinta coral azul marinho",
+          valor: "R$: 150,00",
+        },
+        {
+          categoria: "Papelaria",
+          produto: "Caderneta",
+          descricao: "Caderneta de anotacoes",
+          valor: "R$: 10,00",
+        },
+      ],
     };
-  },
-  mounted() {
-    axios
-      .get("/api/produto/all")
-      .then((result) => {
-        this.data = result.data.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   },
 };
 </script>
-<style lang="scss">
-.form {
+<style>
+.produto {
+  display: flex;
+}
+.produto a {
+  text-decoration: none;
+}
+.produto-content {
+  display: flex;
+  height: 100%;
+  width: 1000px;
+  margin: auto;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.produto-content-search {
   display: flex;
   width: 100%;
-  flex-flow: column;
-}
-.form-body {
-  display: flex;
-  background-color: white;
-  flex-wrap: wrap;
-  flex-grow: 1;
-  flex-direction: column;
-  border-top: solid 0.1rem white;
-  align-content: center;
-  width: 100%;
-}
-.form-body-content {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  background-color: #ededed;
-}
-.form-body-content-item {
-  display: flex;
-  padding-top: 1rem;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.form {
-  display: flex;
-}
-.form-card-header {
-  display: flex;
-}
-.form-card-content {
-  display: flex;
-  background-color: #ededed;
-  margin: 0.5rem 1rem 0.5rem 1rem;
-  justify-content: space-between;
-  flex-direction: row;
-}
-.form-card-content-search {
-  display: flex;
-  align-items: flex-start;
-}
-.form-card-body {
-  display: flex;
-  padding: 2rem 2rem 2rem 2rem;
-  align-self: flex-start;
-  flex-wrap: wrap;
-  flex-grow: 1;
+  margin-bottom: 0.5rem;
+  background-color: #e6e6e6;
 }
 </style>
