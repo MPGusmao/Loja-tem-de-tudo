@@ -28,6 +28,8 @@ export default {
   height: 160px;
   border-radius: 0.3rem;
   margin-bottom: 1rem;
+  margin-right: 0.40rem;
+  margin-left: 0.40rem;
 }
 .produtoitem-content {
   display: flex;
