@@ -1,66 +1,71 @@
 <template>
-  <div class="form">
-    <div class="form-header">
-      <HeaderTitle v-if="!this.data.ID" :title="'Novo Produto'" />
-      <HeaderTitle v-if="this.data.ID" :title="'Editar Produto'" />
-    </div>
-    <div class="form-body">
-      <div class="form-body-content">
-        <div class="form-body-content-item">
-          <InputField :label="'Nome do Produto'" v-model="data.NOME_PRODUTO" />
-          <InputField :label="'Descrição'" v-model="data.DESCRICAO" />
-        </div>
-        <div class="form-body-content-item">
-          <InputField :label="'Marca'" v-model="data.MARCA" />
-          <InputField :label="'Fornecedor'" v-model="data.FORNECEDOR" />
-        </div>
+  <div class="produtoform">
+    <div class="produtoform-content">
+      <HeaderTitle :title="'Novo Produto'" />
+      <div class="produtoform-content-item">
+        <InputField
+          :label="'Nome do Produto:'"
+          :placeholder="'Nome do Produto'"
+        />
       </div>
-      <div class="form-body-content">
-        <div class="form-body-content-item">
-          <InputField :label="'Classificação'" v-model="data.CLASSIFICACAO" />
-          <InputField
-            :type="'number'"
-            :label="'Preço Custo'"
-            v-model="data.PRECO_CUSTO"
-          />
+      <div class="produtoform-content-item">
+        <InputField :label="'Descrição:'" :placeholder="'Descricao'" />
+      </div>
+      <div class="produtoform-content-item">
+        <InputField :label="'Marca:'" :placeholder="'Marca'" />
+      </div>
+      <div class="produtoform-content-item">
+        <InputField :label="'Fornecedor:'" :placeholder="'Fornecedor'" />
+      </div>
+      <div class="produtoform-content-item">
+        <InputField :label="'Classificaçao:'" :placeholder="'Classificação'" />
+      </div>
+      <div class="produtoform-content-item">
+        <InputField
+          :type="'value'"
+          :label="'Preço de Custo:'"
+          :placeholder="'Preço de Custo'"
+        />
+      </div>
+      <div class="produtoform-content-item">
+        <InputField
+          :type="'value'"
+          :label="'Preço de Venda:'"
+          :placeholder="'Preço de Venda'"
+        />
+      </div>
+      <div class="produtoform-content-item">
+        <InputField
+          :type="'number'"
+          :label="'Quantidade na Loja:'"
+          :placeholder="'Quantidade na Loja'"
+        />
+      </div>
+      <div class="produtoform-content-item">
+        <InputField
+          :type="'number'"
+          :label="'Quantidade no Estoque:'"
+          :placeholder="'Quantidade no Estoque'"
+        />
+      </div>
+      <div class="produtoform-footer">
+        <div class="produtoform-footer-button">
+          <button class="produtoform-footer-button-button">
+            <span>Salvar</span>
+          </button>
         </div>
-        <div class="form-body-content-item">
-          <InputField
-            :type="'number'"
-            :label="'Preço Venda'"
-            v-model="data.PRECO_VENDA"
-          />
-          <InputField
-            :type="'number'"
-            :label="'Quantidade de Estoque'"
-            v-model="data.QTDE_ESTOQUE"
-          />
-          <InputField
-            :type="'number'"
-            :label="'Quantidade na Loja'"
-            v-model="data.QTDE_LOJA"
-          />
-        </div>
-        <div class="form-footer">
-          <div class="form-footer-button">
-            <button class="button" @click="salvar()">
-              <span>Salvar</span>
-            </button>
-          </div>
-          <div v-show="data.ID" class="form-footer-button">
-            <button class="button" @click="remove()">
-              <span>Excluir Produto</span>
-            </button>
-          </div>
+        <div v-if="data.ID" class="produtoform-footer-button">
+          <button class="produtoform-footer-button-button">
+            <span>Excluir Produto</span>
+          </button>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import HeaderTitle from "../SharedComponent/HeaderTitle.vue";
-import InputField from "../SharedComponent/InputField.vue";
-import axios from "axios";
+import HeaderTitle from "../SharedComponents/HeaderTitle.vue";
+import InputField from "../SharedComponents/InputField.vue";
 export default {
   name: "ProdutoForm",
   components: {
@@ -69,104 +74,48 @@ export default {
   },
   data() {
     return {
-      data: {
-        id: this.$route.query.id,
-      },
+      data: {},
     };
-  },
-  methods: {
-    salvar() {
-      const configAxios = {
-        method: "post",
-        data: this.data,
-      };
-      if (this.data.ID) {
-        configAxios.url = "/api/produto/update";
-      } else {
-        configAxios.url = "/api/produto/create";
-      }
-      axios(configAxios)
-        .then((result) => {
-          this.$router.push("/");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    remove() {
-      axios({
-        method: "post",
-        url: "/api/produto/remove",
-        data: this.$route.query,
-      })
-        .then((result) => {
-          this.$router.push("/");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-  },
-  mounted() {
-    if (this.data.id) {
-      axios
-        .post("/api/produto/byid", this.data)
-        .then((result) => {
-          this.data = result.data.data[0];
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
   },
 };
 </script>
 <style lang="scss">
-.form {
+.produtoform {
   display: flex;
-  width: 100%;
-  flex-flow: column;
+  padding-top: 0.1rem;
 }
-.form-body {
+.produtoform-content {
   display: flex;
+  width: 1000px;
+  margin: auto;
   background-color: white;
-  flex-wrap: wrap;
   flex-direction: column;
-  border-top: solid 0.1rem white;
-  align-content: center;
+}
+.produtoform-content-item {
+  display: flex;
   width: 100%;
 }
-.form-body-content {
+.produtoform-footer {
   display: flex;
-  flex-direction: column;
-  width: 50%;
-  background-color: #ededed;
-}
-.form-body-content-item {
-  display: flex;
-}
-.form-footer {
-  display: flex;
-  background-color: #ededed;
   justify-content: center;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
-.form-footer-button {
-  font-size: 1rem;
+.produtoform-footer-button {
+  display: flex;
+  padding-left: 1rem;
 }
-.button {
-  font-size: 1.5rem;
-  margin: 1rem;
-  background-color: #0076ff;
-  border-radius: 0.2rem;
-  border: 0;
-  box-shadow: none;
-  color: white;
+.produtoform-footer-button-button {
+  display: flex;
+  font-size: 1.4rem;
   cursor: pointer;
+  background-color: #656565;
+  border-style: solid;
+  border-width: 0.01rem;
+  border-radius: 0.2rem;
+  color: #ededed;
 }
-.button:hover {
-  background-color: white;
-  color: #0076ff;
+.produtoform-footer-button-button:hover {
+  color: black;
 }
 </style>

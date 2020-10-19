@@ -16,9 +16,6 @@ const db2Schemas = require('./database/db2.schemas');
 
 
 //API resources
-const produto = require('./produto')
-const cliente = require('./cliente')
-const vendedor = require('./vendedor')
 
 module.exports = (app, dirname) => {
     const { Router } = express;
@@ -40,9 +37,6 @@ module.exports = (app, dirname) => {
 
 
     //endpoints
-    api.use('/produto', produto(Router));
-    api.use('/cliente', cliente(Router));
-    api.use('/vendedor', vendedor(Router));
 
     // Serve static files
     app.use('/', express.static(path.join(dirname, 'client', 'dist')));

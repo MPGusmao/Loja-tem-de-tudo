@@ -22,7 +22,7 @@ export default {
 <style>
 .produtoitem {
   display: flex;
-  background-color: #e6e6e6;
+  background-color: white;
   flex-direction: column;
   width: 320px;
   height: 160px;
@@ -64,6 +64,6 @@ export default {
 }
 .produtoitem:hover {
   background-color: #f2f2f2;
-  box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem #e6e6e6;
+  box-shadow: 0.01rem 0.01rem 0.1rem 0.1rem #656565;
 }
 </style>
