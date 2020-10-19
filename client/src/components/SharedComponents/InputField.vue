@@ -3,8 +3,6 @@
     <div class="input-field-content">
       <div class="input-field-content-item">
         <label class="input-field-content-item-label">{{ label }}</label>
-      </div>
-      <div class="input-field-content-item">
         <input
           class="input-field-input"
           :type="type"
@@ -50,18 +48,17 @@ export default {
 }
 .input-field-content-item {
   display: flex;
+  align-items: flex-end;
 }
 .input-field-content-item-label {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  width: 25%;
 }
 .input-field-input {
   border-style: solid;
   background-color: white;
   border-color: black;
-  border-radius: 0;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  border-radius: 0.2rem;
   border-width: 0.1rem;
   box-shadow: none;
   color: black;

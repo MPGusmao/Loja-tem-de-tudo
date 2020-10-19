@@ -15,11 +15,11 @@ export default {
 @import "~@shared/css/colors.scss";
 .header-title {
   display: flex;
-  background-color: #ededed;
-  justify-content: center;
   border-top: solid 0.1rem white;
+  padding-left: 0.3rem;
 }
 .header-title-item {
-  font-size: 2.6rem;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 </style>
