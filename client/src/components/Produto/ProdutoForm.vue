@@ -90,6 +90,8 @@ export default {
   margin: auto;
   background-color: white;
   flex-direction: column;
+  border-bottom-left-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
 }
 .produtoform-content-item {
   display: flex;
@@ -107,7 +109,8 @@ export default {
 }
 .produtoform-footer-button-button {
   display: flex;
-  font-size: 1.4rem;
+  font-size: 1rem;
+  padding: 0.5rem;
   cursor: pointer;
   background-color: #656565;
   border-style: solid;
