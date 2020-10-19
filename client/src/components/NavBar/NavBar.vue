@@ -6,8 +6,8 @@
           <div class="navbar-content-item-logo">TemDeTudo</div>
         </router-link>
       </div>
-      <Menu :href="'/produtoform'" :label="'Produtos'" />
-      <Menu :href="''" :label="'Vendas'" />
+      <Menu :href="'/produtoform'" :label="'Produto'" />
+      <Menu :href="'/venda'" :label="'Vendas'" />
     </div>
   </div>
 </template>
