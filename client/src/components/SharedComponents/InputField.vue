@@ -36,7 +36,6 @@ export default {
 <style lang="scss">
 .input-field {
   display: flex;
-  width: 100%;
 }
 .input-field-content {
   display: flex;
@@ -52,7 +51,6 @@ export default {
 }
 .input-field-content-item-label {
   font-size: 1.1rem;
-  width: 25%;
 }
 .input-field-input {
   border-style: solid;
