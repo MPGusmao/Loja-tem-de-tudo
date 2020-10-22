@@ -71,4 +71,7 @@ export default {
   margin-bottom: 0.5rem;
   background-color: #e6e6e6;
 }
+.produto-content-search .input-field {
+  width: 100%;
+}
 </style>
