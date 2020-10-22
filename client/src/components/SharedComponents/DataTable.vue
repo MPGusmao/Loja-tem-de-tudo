@@ -3,7 +3,7 @@
     <div v-show="hasTitle" class="data-table-title">
       <span>{{ title }}</span>
     </div>
-    <table class="data-table-table">
+    <table class="data-table-table table">
       <thead class="data-table-thead">
         <tr>
           <th v-for="(item, index) in columns" :key="index">
@@ -44,6 +44,7 @@ export default {
   width: 100%;
   height: 100%;
   flex-direction: column;
+  border-collapse: collapse !important;
 }
 .data-table-title {
   display: flex;
@@ -52,22 +53,27 @@ export default {
   padding-top: 0.5rem;
 }
 .data-table-title span {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
   color: #0076ff;
 }
+table {
+  border-collapse: collapse !important;
+}
 .data-table-thead {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 .data-table-thead th {
   border-bottom: solid 0.2rem black;
+  text-align: left;
+  padding-left: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 .data-table-body {
-  text-align: center;
-  border-bottom: solid 0.1rem white;
+  border-bottom: solid 0.1rem black;
 }
 .data-table-body td {
   padding: 0.5rem;
-  border-bottom: solid 0.1rem white;
+  border-bottom: solid 0.1rem black;
 }
 </style>

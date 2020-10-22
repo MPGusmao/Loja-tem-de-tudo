@@ -6,7 +6,7 @@
           <div class="navbar-content-item-logo">TemDeTudo</div>
         </router-link>
       </div>
-      <Menu :href="'/produtoform'" :label="'Produto'" />
+      <Menu :href="'/produtoform'" :label="'Novo Produto'" />
       <Menu :href="'/venda'" :label="'Vendas'" />
     </div>
   </div>
@@ -32,8 +32,7 @@ export default {
 }
 .navbar-content-item {
   display: flex;
-  display: flex;
-  width: 100%;
+  flex-grow: 1;
 }
 .navbar-content-item a {
   text-decoration: none;

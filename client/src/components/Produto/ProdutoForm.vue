@@ -82,7 +82,6 @@ export default {
 <style lang="scss">
 .produtoform {
   display: flex;
-  padding-top: 0.1rem;
 }
 .produtoform-content {
   display: flex;
@@ -96,6 +95,12 @@ export default {
 .produtoform-content-item {
   display: flex;
   width: 100%;
+}
+.produtoform-content-item .input-field {
+  width: 100%;
+}
+.produtoform-content-item .input-field-content-item-label {
+  width: 25%;
 }
 .produtoform-footer {
   display: flex;

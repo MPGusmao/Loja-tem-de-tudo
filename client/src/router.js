@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Produto from './components/Produto/Produto.vue'
 import ProdutoForm from './components/Produto/ProdutoForm.vue'
 import Venda from './components/Venda/Venda.vue'
+import RelatorioForm from './components/Venda/RelatorioVendas.vue'
 
 Vue.use(Router);
 
@@ -23,6 +24,11 @@ const router = new Router({
             path: '/venda',
             name: 'Venda',
             component: Venda
+        },
+        {
+            path: '/analise',
+            name: 'RelatorioForm',
+            component: RelatorioForm
         }
     ]
 });

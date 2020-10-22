@@ -2,22 +2,26 @@
   <div class="vendaform">
     <div class="vendaform-content">
       <HeaderTitle :title="'Vendas'" />
+      <div class="vendaform-content-item-date">
+        <InputField :type="'date'" />
+        <InputField :type="'date'" />
+      </div>
       <div class="vendaform-content-item">
         <div class="vendaform-content-button">
-          <div class="vendaform-content-button-button">
+          <router-link to="/" class="vendaform-content-button-button">
             <button class="vendaform-button">
               <span>Realizar Venda</span>
             </button>
-          </div>
-          <div class="vendaform-content-button-button">
+          </router-link>
+          <router-link to="/analise" class="vendaform-content-button-button">
             <button class="vendaform-button">
               <span>Relatório de Vendas</span>
             </button>
-          </div>
+          </router-link>
         </div>
       </div>
       <div class="vendaform-content-item">
-        <DataTable :columns="columns" :data="data"/>
+        <DataTable :columns="columns" :data="data" />
       </div>
     </div>
   </div>
@@ -25,41 +29,40 @@
 <script>
 import HeaderTitle from "../SharedComponents/HeaderTitle.vue";
 import DataTable from "../SharedComponents/DataTable.vue";
+import InputField from "../SharedComponents/InputField.vue";
 export default {
   name: "Venda",
   components: {
     HeaderTitle,
     DataTable,
+    InputField,
   },
   data() {
     return {
-      columns: ["ID", "Nome do Cliente", "Data", "Itens", "Valor", "Vendedor"],
+      columns: ["Data", "Cliente", "Itens", "Valor", "Vendedor"],
       data: [
-          {
-              id: '1',
-              nomeCliente: "Manoel",
-              data: '10/10/2020',
-              itens: 'Caderno 10 materias azul',
-              valor: 'R$ 25,00',
-              vendedor: 'Joazinho'
-          },
-          {
-              id: '2',
-              nomeCliente: "Bruno",
-              data: '11/10/2020',
-              itens: 'Caderneta de anotações',
-              valor: 'R$ 15,00',
-              vendedor: 'Joazinho'
-          },
-          {
-              id: '3',
-              nomeCliente: "Jose",
-              data: '13/10/2020',
-              itens: 'Pacote de sulfites 500 folhas',
-              valor: 'R$ 30,00',
-              vendedor: 'Joaquim'
-          }
-      ]
+        {
+          data: "10/10/2020",
+          nomeCliente: "Manoel",
+          itens: "Caderno 10 materias azul",
+          valor: "R$ 25,00",
+          vendedor: "Joazinho",
+        },
+        {
+          data: "11/10/2020",
+          nomeCliente: "Bruno",
+          itens: "Caderneta de anotações",
+          valor: "R$ 15,00",
+          vendedor: "Joazinho",
+        },
+        {
+          data: "13/10/2020",
+          nomeCliente: "Jose",
+          itens: "Pacote de sulfites 500 folhas",
+          valor: "R$ 30,00",
+          vendedor: "Joaquim",
+        },
+      ],
     };
   },
 };
@@ -67,7 +70,6 @@ export default {
 <style lang="scss">
 .vendaform {
   display: flex;
-  padding-top: 0.1rem;
 }
 .vendaform-content {
   display: flex;
@@ -78,13 +80,20 @@ export default {
   border-bottom-left-radius: 0.3rem;
   border-bottom-right-radius: 0.3rem;
 }
-.vendaform-content-item {
+.vendaform-content-item-date {
   display: flex;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-bottom: 1rem;
+}
+.vendaform-content-item {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 .vendaform-content-button {
   display: flex;
+  align-self: flex-end;
+}
+.vendaform-content-button a {
+  text-decoration: none;
 }
 .vendaform-content-button-button {
   display: flex;
