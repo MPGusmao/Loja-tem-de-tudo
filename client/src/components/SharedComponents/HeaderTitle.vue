@@ -15,8 +15,9 @@ export default {
 @import "~@shared/css/colors.scss";
 .header-title {
   display: flex;
-  border-top: solid 0.1rem white;
   padding-left: 0.3rem;
+  padding-top: 0.5rem;
+  background-color: #e6e6e6;
 }
 .header-title-item {
   font-size: 1.5rem;
