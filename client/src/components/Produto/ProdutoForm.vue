@@ -6,25 +6,27 @@
         <InputField
           :label="'Nome do Produto:'"
           :placeholder="'Nome do Produto'"
+          v-model="data.NOME_PRODUTO"
         />
       </div>
       <div class="produtoform-content-item">
-        <InputField :label="'Descrição:'" :placeholder="'Descricao'" />
+        <InputField :label="'Descrição:'" :placeholder="'Descricao'" v-model="data.DESCRICAO"/>
       </div>
       <div class="produtoform-content-item">
-        <InputField :label="'Marca:'" :placeholder="'Marca'" />
+        <InputField :label="'Marca:'" :placeholder="'Marca'" v-model="data.MARCA"/>
       </div>
       <div class="produtoform-content-item">
-        <InputField :label="'Fornecedor:'" :placeholder="'Fornecedor'" />
+        <InputField :label="'Fornecedor:'" :placeholder="'Fornecedor'" v-model="data.FORNECEDOR"/>
       </div>
       <div class="produtoform-content-item">
-        <InputField :label="'Classificaçao:'" :placeholder="'Classificação'" />
+        <InputField :label="'Classificaçao:'" :placeholder="'Classificação'" v-model="data.CLASSIFICACAO"/>
       </div>
       <div class="produtoform-content-item">
         <InputField
           :type="'value'"
           :label="'Preço de Custo:'"
           :placeholder="'Preço de Custo'"
+          v-model="data.PRECO_CUSTO"
         />
       </div>
       <div class="produtoform-content-item">
@@ -32,6 +34,7 @@
           :type="'value'"
           :label="'Preço de Venda:'"
           :placeholder="'Preço de Venda'"
+          v-model="data.PRECO_VENDA"
         />
       </div>
       <div class="produtoform-content-item">
@@ -39,6 +42,7 @@
           :type="'number'"
           :label="'Quantidade na Loja:'"
           :placeholder="'Quantidade na Loja'"
+          v-model="data.QTDE_LOJA"
         />
       </div>
       <div class="produtoform-content-item">
@@ -46,6 +50,7 @@
           :type="'number'"
           :label="'Quantidade no Estoque:'"
           :placeholder="'Quantidade no Estoque'"
+
         />
       </div>
       <div class="produtoform-footer">
