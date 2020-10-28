@@ -3,12 +3,24 @@
     <div class="vendaform-content">
       <HeaderTitle :title="'Vendas'" />
       <div class="vendaform-content-item-date">
-        <InputField :type="'date'" />
-        <InputField :type="'date'" />
+        <InputField :type="'date'" v-model="data.dataIni" />
+        <InputField :type="'date'" v-model="data.dataFim" />
+        <div class="vendaform-content-item">
+          <div class="vendaform-content-button">
+            <router-link to="/analise" class="vendaform-content-button-button">
+              <button class="vendaform-button">
+                <span>Filtrar no Período</span>
+              </button>
+            </router-link>
+          </div>
+        </div>
       </div>
       <div class="vendaform-content-item">
         <div class="vendaform-content-button">
-          <router-link to="/" class="vendaform-content-button-button">
+          <router-link
+            to="/realizarvenda"
+            class="vendaform-content-button-button"
+          >
             <button class="vendaform-button">
               <span>Realizar Venda</span>
             </button>
@@ -98,6 +110,7 @@ export default {
 .vendaform-content-button-button {
   display: flex;
   padding-left: 1rem;
+  text-decoration: none;
 }
 .vendaform-button {
   display: flex;

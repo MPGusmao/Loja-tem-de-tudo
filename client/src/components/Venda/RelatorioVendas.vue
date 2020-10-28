@@ -2,8 +2,16 @@
   <div class="relatoriovenda">
     <div class="relatoriovenda-content">
       <HeaderTitle :title="'Relatório de Vendas'" />
+      <div class="relatoriovenda-content-item-item">
+        Relatório de {{ data.dataIni }} a {{ data.dataFim }}
+      </div>
+      <div class="relatoriovenda-content-item-item">
+        Total Vendido: {{ data.total }}
+      </div>
+      <div class="relatoriovenda-content-item-item">
+        Lucro dos Produtos: {{ data.lucro }}
+      </div>
       <div class="relatoriovenda-content-item">
-
         <div class="relatoriovenda-content-item-datatable">
           <DataTable
             :hasTitle="true"
@@ -29,7 +37,7 @@ import HeaderTitle from "../SharedComponents/HeaderTitle.vue";
 import InputField from "../SharedComponents/InputField.vue";
 import DataTable from "../SharedComponents/DataTable.vue";
 export default {
-  name: "Relatorio Vendas",
+  name: "RelatorioVendas",
   components: {
     HeaderTitle,
     InputField,
@@ -41,6 +49,7 @@ export default {
       vendedores: ["Nome", "Valor"],
       clientesData: [{ nome: "Manoel", valor: "R$: 100,00" }],
       vendedoresData: [{ nome: "Joaozinho", valor: "R$: 75,00" }],
+      data: {},
     };
   },
 };
@@ -61,6 +70,11 @@ export default {
 .relatoriovenda-content-item {
   display: flex;
   padding-bottom: 1rem;
+  justify-content: center;
+}
+.relatoriovenda-content-item-item {
+  font-size: 1.3rem;
+  text-align: center;
 }
 .relatoriovenda-content-item-datatable {
   display: flex;
