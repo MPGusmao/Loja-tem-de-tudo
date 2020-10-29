@@ -1,0 +1,22 @@
+{
+    "CREATE_PRODUCT": {
+        "success": {
+            "status": 200,
+            "message": "Product created with success"
+        },
+        "error": {
+            "status": 500,
+            "message": "Error when creating the product"
+        }
+    },
+    "GET_ALL_PRODUCT": {
+        "success": {
+            "status": 200,
+            "mesage": "All products retrived with success"
+        },
+        "error": {
+            "status": 500,
+            "message": "Error when getting all products"
+        }
+    }
+}
