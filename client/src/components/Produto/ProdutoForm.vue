@@ -1,7 +1,8 @@
 <template>
   <div class="produtoform">
     <div class="produtoform-content">
-      <HeaderTitle :title="'Novo Produto'" />
+      <HeaderTitle v-if="!this.data.ID" :title="'Novo Produto'" />
+      <HeaderTitle v-if="this.data.ID" :title="'Editar Produto'" />
       <div class="produtoform-content-item">
         <InputField
           :label="'Nome do Produto:'"
@@ -159,7 +160,9 @@ export default {
   },
   data() {
     return {
-      data: {},
+      data: {
+        id: this.$route.query.id,
+      },
     };
   },
   computed: {
@@ -181,6 +184,18 @@ export default {
           console.log(error);
         });
     },
+  },
+  mounted() {
+    if (this.data.id) {
+      axios
+        .post("/api/produto/byid", this.data)
+        .then((result) => {
+          this.data = result.data.data[0];
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   },
 };
 </script>

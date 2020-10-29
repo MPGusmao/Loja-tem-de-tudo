@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="href">
+  <router-link :to="{ name: href, query: { id: item.ID } }">
     <div class="produtoitem">
       <div class="produtoitem-content">
         <div class="produtoitem-content-category">{{ item.CLASSIFICACAO }}</div>

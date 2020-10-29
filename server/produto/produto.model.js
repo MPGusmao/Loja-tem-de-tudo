@@ -42,6 +42,7 @@ const getAllProduct = async (connection) => {
     try {
         const query = `
             SELECT
+                ID,
                 NOME_PRODUTO,
                 DESCRICAO,
                 MARCA,
@@ -58,7 +59,32 @@ const getAllProduct = async (connection) => {
         return { error, ...responses.GET_ALL_PRODUCT.error };
     }
 };
+
+const getProductById = async (connection, id) => {
+    try {
+        const query = `
+            SELECT
+                ID,
+                NOME_PRODUTO,
+                DESCRICAO,
+                MARCA,
+                FORNECEDOR,
+                CLASSIFICACAO,
+                PRECO_CUSTO,
+                PRECO_VENDA,
+                QTDE_LOJA,
+                QTDE_ESTOQUE
+            FROM XCV90760.PRODUTO
+            WHERE 
+                ID = ${id};`;
+        const result = await connection.query(query)
+        return { data: result, ...responses.GET_PRODUCT_BY_ID.success };
+    } catch (error) {
+        return { error, ...responses.GET_PRODUCT_BY_ID.error };
+    }
+};
 module.exports = {
     createProduct,
-    getAllProduct
+    getAllProduct,
+    getProductById
 }
