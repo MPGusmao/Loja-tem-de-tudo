@@ -7,34 +7,64 @@
           :label="'Nome do Produto:'"
           :placeholder="'Nome do Produto'"
           v-model="data.NOME_PRODUTO"
+          :$v="$v.data.NOME_PRODUTO"
+          :validate="true"
         />
       </div>
       <div class="produtoform-content-item">
-        <InputField :label="'Descrição:'" :placeholder="'Descricao'" v-model="data.DESCRICAO"/>
-      </div>
-      <div class="produtoform-content-item">
-        <InputField :label="'Marca:'" :placeholder="'Marca'" v-model="data.MARCA"/>
-      </div>
-      <div class="produtoform-content-item">
-        <InputField :label="'Fornecedor:'" :placeholder="'Fornecedor'" v-model="data.FORNECEDOR"/>
-      </div>
-      <div class="produtoform-content-item">
-        <InputField :label="'Classificaçao:'" :placeholder="'Classificação'" v-model="data.CLASSIFICACAO"/>
+        <InputField
+          :label="'Descrição:'"
+          :placeholder="'Descricao'"
+          v-model="data.DESCRICAO"
+          :$v="$v.data.DESCRICAO"
+          :validate="true"
+        />
       </div>
       <div class="produtoform-content-item">
         <InputField
-          :type="'value'"
+          :label="'Marca:'"
+          :placeholder="'Marca'"
+          v-model="data.MARCA"
+          :$v="$v.data.MARCA"
+          :validate="true"
+        />
+      </div>
+      <div class="produtoform-content-item">
+        <InputField
+          :label="'Fornecedor:'"
+          :placeholder="'Fornecedor'"
+          v-model="data.FORNECEDOR"
+          :$v="$v.data.FORNECEDOR"
+          :validate="true"
+        />
+      </div>
+      <div class="produtoform-content-item">
+        <InputField
+          :label="'Classificaçao:'"
+          :placeholder="'Classificação'"
+          v-model="data.CLASSIFICACAO"
+          :$v="$v.data.CLASSIFICACAO"
+          :validate="true"
+        />
+      </div>
+      <div class="produtoform-content-item">
+        <InputField
+          :type="'number'"
           :label="'Preço de Custo:'"
           :placeholder="'Preço de Custo'"
           v-model="data.PRECO_CUSTO"
+          :$v="$v.data.PRECO_CUSTO"
+          :validate="true"
         />
       </div>
       <div class="produtoform-content-item">
         <InputField
-          :type="'value'"
+          :type="'number'"
           :label="'Preço de Venda:'"
           :placeholder="'Preço de Venda'"
           v-model="data.PRECO_VENDA"
+          :$v="$v.data.PRECO_VENDA"
+          :validate="true"
         />
       </div>
       <div class="produtoform-content-item">
@@ -43,6 +73,8 @@
           :label="'Quantidade na Loja:'"
           :placeholder="'Quantidade na Loja'"
           v-model="data.QTDE_LOJA"
+          :$v="$v.data.QTDE_LOJA"
+          :validate="true"
         />
       </div>
       <div class="produtoform-content-item">
@@ -50,12 +82,14 @@
           :type="'number'"
           :label="'Quantidade no Estoque:'"
           :placeholder="'Quantidade no Estoque'"
-
+          v-model="data.QTDE_ESTOQUE"
+          :$v="$v.data.QTDE_ESTOQUE"
+          :validate="true"
         />
       </div>
       <div class="produtoform-footer">
         <div class="produtoform-footer-button">
-          <button class="produtoform-footer-button-button">
+          <button class="produtoform-footer-button-button" @click="save()">
             <span>Salvar</span>
           </button>
         </div>
@@ -71,16 +105,82 @@
 <script>
 import HeaderTitle from "../SharedComponents/HeaderTitle.vue";
 import InputField from "../SharedComponents/InputField.vue";
+import { required } from "vuelidate/lib/validators";
+import axios from "axios";
+const restrictions = {
+  produto: { required: true },
+  descricao: { required: true },
+  marca: { required: true },
+  fornecedor: { required: true },
+  classificacao: { required: true },
+  preco_custo: { required: true },
+  preco_venda: { required: true },
+  qtde_loja: { required: true },
+  qtde_estoque: { required: true },
+};
 export default {
   name: "ProdutoForm",
   components: {
     HeaderTitle,
     InputField,
   },
+  validations() {
+    return {
+      data: {
+        NOME_PRODUTO: {
+          required: restrictions.produto.required ? required : undefined,
+        },
+        DESCRICAO: {
+          required: restrictions.descricao.required ? required : undefined,
+        },
+        MARCA: {
+          required: restrictions.marca.required ? required : undefined,
+        },
+        FORNECEDOR: {
+          required: restrictions.fornecedor.required ? required : undefined,
+        },
+        CLASSIFICACAO: {
+          required: restrictions.classificacao.required ? required : undefined,
+        },
+        PRECO_CUSTO: {
+          required: restrictions.preco_custo.required ? required : undefined,
+        },
+        PRECO_VENDA: {
+          required: restrictions.preco_venda.required ? required : undefined,
+        },
+        QTDE_LOJA: {
+          required: restrictions.qtde_loja.required ? required : undefined,
+        },
+        QTDE_ESTOQUE: {
+          required: restrictions.qtde_estoque.required ? required : undefined,
+        },
+      },
+    };
+  },
   data() {
     return {
       data: {},
     };
+  },
+  computed: {
+    restrictions() {
+      return restrictions;
+    },
+  },
+  methods: {
+    save() {
+      this.$v.data.$touch();
+      axios
+        .post("/api/produto/create", this.data)
+        .then((result) => {
+          this.$router.push({
+            name: "Produto",
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>
