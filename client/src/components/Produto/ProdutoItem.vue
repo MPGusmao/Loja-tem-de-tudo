@@ -2,10 +2,10 @@
   <router-link :to="href">
     <div class="produtoitem">
       <div class="produtoitem-content">
-        <div class="produtoitem-content-category">{{ item.categoria }}</div>
-        <div class="produtoitem-content-produto">{{ item.produto }}</div>
-        <div class="produtoitem-content-descricao">{{ item.descricao }}</div>
-        <div class="produtoitem-content-valor">{{ item.valor }}</div>
+        <div class="produtoitem-content-category">{{ item.CLASSIFICACAO }}</div>
+        <div class="produtoitem-content-produto">{{ item.NOME_PRODUTO }}</div>
+        <div class="produtoitem-content-descricao">{{ item.DESCRICAO }}</div>
+        <div class="produtoitem-content-valor">{{ item.PRECO_VENDA }}</div>
       </div>
     </div>
   </router-link>
@@ -28,8 +28,8 @@ export default {
   height: 160px;
   border-radius: 0.3rem;
   margin-bottom: 1rem;
-  margin-right: 0.40rem;
-  margin-left: 0.40rem;
+  margin-right: 0.4rem;
+  margin-left: 0.4rem;
 }
 .produtoitem-content {
   display: flex;

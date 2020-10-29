@@ -12,22 +12,39 @@
           :placeholder="placeholder"
         />
       </div>
+      <div class="input-field-content-item" v-if="validate">
+        <span
+          class="input-field-content-item-req-message"
+          v-if="!$v.required && $v.$error"
+          >Preencha esse campo</span
+        >
+      </div>
     </div>
   </div>
 </template>
 <script>
 export default {
   name: "InputField",
+  model: {
+    prop: "value",
+    event: "input",
+  },
   props: {
     label: { type: String, default: null },
     type: { type: String, default: "text" },
     value: { default: null },
     readOnly: { type: Boolean, default: false },
     placeholder: { type: String, default: null },
+    $v: { type: Object, default: () => null },
+    required: { type: Boolean, default: false },
+    validate: { type: Boolean, default: false },
   },
   methods: {
     //Needed to get the values
     onChange(event) {
+      if (this.$v) {
+        this.$v.$touch();
+      }
       this.$emit("input", event.target.value);
     },
   },
@@ -64,5 +81,9 @@ export default {
   padding: 0.5rem;
   width: 100%;
   padding-right: 0.1rem;
+}
+.input-field-content-item-req-message {
+  font-size: 0.7rem;
+  color: red;
 }
 </style>
