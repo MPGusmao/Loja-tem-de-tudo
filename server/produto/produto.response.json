@@ -28,5 +28,15 @@
             "status": 500,
             "message": "Error when getting product by id"
         }
+    },
+    "UPDATE_PRODUCT": {
+        "success": {
+            "status": 200,
+            "message": "Product updated with success"
+        },
+        "error": {
+            "status": 500,
+            "message": "Error when updating the product"
+        }
     }
 }
