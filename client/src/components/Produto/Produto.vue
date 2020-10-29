@@ -4,8 +4,8 @@
       <div class="produto-content-search">
         <InputField :placeholder="'Pesquisar produto'" />
       </div>
-      <div v-for="(item, index) in produtos" :key="index">
-        <ProdutoItem :item="item" />
+      <div v-for="(item, index) in data" :key="index">
+        <ProdutoItem :item="item" :href="'ProdutoForm'" />
       </div>
     </div>
   </div>
@@ -13,6 +13,7 @@
 <script>
 import ProdutoItem from "./ProdutoItem.vue";
 import InputField from "../SharedComponents/InputField.vue";
+import axios from "axios";
 export default {
   name: "Produto",
   components: {
@@ -21,33 +22,18 @@ export default {
   },
   data() {
     return {
-      produtos: [
-        {
-          categoria: "Papelaria",
-          produto: "Caderno 10 materias",
-          descricao: "Caderno 10 materias 3 cores",
-          valor: "R$: 15,00",
-        },
-        {
-          categoria: "Papelaria",
-          produto: "Sulfite",
-          descricao: "Pacote de sulfites com 500 folhas",
-          valor: "R$: 25,00",
-        },
-        {
-          categoria: "Material",
-          produto: "Tinta Coral",
-          descricao: "Tinta coral azul marinho",
-          valor: "R$: 150,00",
-        },
-        {
-          categoria: "Papelaria",
-          produto: "Caderneta",
-          descricao: "Caderneta de anotacoes",
-          valor: "R$: 10,00",
-        },
-      ],
+      data: {},
     };
+  },
+  mounted() {
+    axios
+      .get("/api/produto/product")
+      .then((result) => {
+        this.data = result.data.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 </script>
