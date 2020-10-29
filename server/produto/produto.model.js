@@ -62,6 +62,9 @@ const getAllProduct = async (connection) => {
 
 const getProductById = async (connection, id) => {
     try {
+        if (!id) {
+            throw new Error(`ID is not defined: ${id}`)
+        }
         const query = `
             SELECT
                 ID,
@@ -83,8 +86,36 @@ const getProductById = async (connection, id) => {
         return { error, ...responses.GET_PRODUCT_BY_ID.error };
     }
 };
+
+const updateProduct = async (connection, body, id) => {
+    try {
+        if (!body || !id) {
+            throw new Error(`Body or id is not defined`)
+        }
+        const query = `
+            UPDATE 
+                XCV90760.PRODUTO as P
+            SET 
+                NOME_PRODUTO = '${body.NOME_PRODUTO}',
+                DESCRICAO = '${body.DESCRICAO}',
+                MARCA = '${body.MARCA}',
+                FORNECEDOR = '${body.FORNECEDOR}',
+                CLASSIFICACAO = '${body.CLASSIFICACAO}',
+                PRECO_CUSTO = '${body.PRECO_CUSTO}',
+                PRECO_VENDA = '${body.PRECO_VENDA}',
+                QTDE_LOJA = '${body.QTDE_LOJA}',
+                QTDE_ESTOQUE = '${body.QTDE_ESTOQUE}'
+            WHERE 
+                P.ID = ${id};`;
+        const result = await connection.query(query)
+        return { data: result, ...responses.UPDATE_PRODUCT.success };
+    } catch (error) {
+        return { error, ...responses.UPDATE_PRODUCT.error };
+    }
+};
 module.exports = {
     createProduct,
     getAllProduct,
-    getProductById
+    getProductById,
+    updateProduct
 }

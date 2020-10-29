@@ -5,7 +5,7 @@
         <div class="produtoitem-content-category">{{ item.CLASSIFICACAO }}</div>
         <div class="produtoitem-content-produto">{{ item.NOME_PRODUTO }}</div>
         <div class="produtoitem-content-descricao">{{ item.DESCRICAO }}</div>
-        <div class="produtoitem-content-valor">{{ item.PRECO_VENDA }}</div>
+        <div class="produtoitem-content-valor">{{ "R$: " + item.PRECO_VENDA }}</div>
       </div>
     </div>
   </router-link>
