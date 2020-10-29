@@ -18,5 +18,15 @@
             "status": 500,
             "message": "Error when getting all products"
         }
+    },
+    "GET_PRODUCT_BY_ID": {
+        "success": {
+            "status": 200,
+            "message": "Product by id retrived with succes"
+        },
+        "error": {
+            "status": 500,
+            "message": "Error when getting product by id"
+        }
     }
 }
