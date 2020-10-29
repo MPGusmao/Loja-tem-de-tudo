@@ -173,8 +173,16 @@ export default {
   methods: {
     save() {
       this.$v.data.$touch();
-      axios
-        .post("/api/produto/create", this.data)
+      const config = {
+        method: "post",
+        data: this.data,
+      };
+      if (this.data.ID) {
+        config.url = "/api/produto/update";
+      } else {
+        config.url = "/api/produto/create";
+      }
+      axios(config)
         .then((result) => {
           this.$router.push({
             name: "Produto",
