@@ -113,9 +113,27 @@ const updateProduct = async (connection, body, id) => {
         return { error, ...responses.UPDATE_PRODUCT.error };
     }
 };
+
+const removeProduct = async (connection, id) => {
+    try {
+        if (!id) {
+            throw new Error(`Id is not defined`)
+        }
+        const query = `
+            DELETE 
+                XCV90760.PRODUTO as P
+            WHERE 
+                P.ID = ${id};`;
+        const result = await connection.query(query)
+        return { data: result, ...responses.REMOVE_PRODUCT.success };
+    } catch (error) {
+        return { error, ...responses.REMOVE_PRODUCT.error };
+    }
+};
 module.exports = {
     createProduct,
     getAllProduct,
     getProductById,
-    updateProduct
+    updateProduct,
+    removeProduct
 }
