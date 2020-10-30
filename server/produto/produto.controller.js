@@ -39,9 +39,19 @@ const updateProduct = async (req, res) => {
         return res.status(error.status || 500).json(error);
     }
 };
+const removeProduct = async (req, res) => {
+    try {
+        const id  = req.body.id
+        const result = await request.removeProduct(req.dbConnection, id)
+        return res.status(result.status).json(result);
+    } catch (error) {
+        return res.status(error.status || 500).json(error);
+    }
+};
 module.exports = {
     createProduct,
     getAllProduct,
     getProductById,
-    updateProduct
+    updateProduct,
+    removeProduct
 };
