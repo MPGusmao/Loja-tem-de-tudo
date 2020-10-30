@@ -95,7 +95,7 @@
           </button>
         </div>
         <div v-if="data.ID" class="produtoform-footer-button">
-          <button class="produtoform-footer-button-button">
+          <button @click="remove()" class="produtoform-footer-button-button">
             <span>Excluir Produto</span>
           </button>
         </div>
@@ -182,6 +182,22 @@ export default {
       } else {
         config.url = "/api/produto/create";
       }
+      axios(config)
+        .then((result) => {
+          this.$router.push({
+            name: "Produto",
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    remove() {
+      const config = {
+        method: "post",
+        url: "/api/produto/remove",
+        data: this.$route.query
+      };
       axios(config)
         .then((result) => {
           this.$router.push({
