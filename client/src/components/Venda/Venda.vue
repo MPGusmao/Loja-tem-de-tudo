@@ -51,30 +51,8 @@ export default {
   },
   data() {
     return {
-      columns: ["Data", "Cliente", "Itens", "Valor", "Vendedor"],
-      data: [
-        {
-          data: "10/10/2020",
-          nomeCliente: "Manoel",
-          itens: "Caderno 10 materias azul",
-          valor: "R$ 25,00",
-          vendedor: "Joazinho",
-        },
-        {
-          data: "11/10/2020",
-          nomeCliente: "Bruno",
-          itens: "Caderneta de anotações",
-          valor: "R$ 15,00",
-          vendedor: "Joazinho",
-        },
-        {
-          data: "13/10/2020",
-          nomeCliente: "Jose",
-          itens: "Pacote de sulfites 500 folhas",
-          valor: "R$ 30,00",
-          vendedor: "Joaquim",
-        },
-      ],
+      columns: ["Data", "Cliente", "Valor", "Vendedor"],
+      data: {},
     };
   },
 };

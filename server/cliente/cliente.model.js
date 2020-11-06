@@ -2,7 +2,7 @@ const responses = require('./cliente.responses.json')
 
 const createClient = async (connection, body) => {
     try {
-        if (!body) {
+        if (!body.NOME_CLIENTE || !body.ENDERECO || !body.TELEFONE) {
             throw new Error(`Body is not defined: ${body}`)
         }
         const query = `

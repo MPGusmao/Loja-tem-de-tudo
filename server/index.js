@@ -17,8 +17,8 @@ const db2Schemas = require('./database/db2.schemas');
 
 //API resources
 const produto = require('./produto');
-const venda = require('./venda')
-const cliente = require('./cliente')
+const cliente = require('./cliente');
+const vendedor = require('./vendedor');
 
 
 
@@ -44,7 +44,7 @@ module.exports = (app, dirname) => {
     //endpoints
     api.use('/produto', produto(Router))
     api.use('/cliente', cliente(Router))
-    // api.use('/venda', venda(Router))
+    api.use('/vendedor', vendedor(Router))
 
 
     // Serve static files

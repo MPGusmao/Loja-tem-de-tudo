@@ -1,0 +1,12 @@
+{
+    "CREATE_SALESMAN": {
+        "success": {
+            "status": 200,
+            "message": "Salesman inserted with success"
+        },
+        "error": {
+            "status": 500,
+            "message": "Error when inserting the salesman"
+        }
+    }
+}

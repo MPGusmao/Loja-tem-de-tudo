@@ -9,7 +9,7 @@
               <span>Novo Cliente</span>
             </button>
           </router-link>
-          <router-link to="" class="realizarvendaform-content-button-button">
+          <router-link to="/vendedor" class="realizarvendaform-content-button-button">
             <button class="realizarvendaform-button">
               <span>Novo Vendedor</span>
             </button>
