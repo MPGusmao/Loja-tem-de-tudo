@@ -1,0 +1,12 @@
+{
+    "CREATE_CLIENT": {
+        "success": {
+            "status": 200,
+            "message": "Client inserted with success"
+        },
+        "error": {
+            "status": 500,
+            "message": "Error when inserting the client"
+        }
+    }
+}
