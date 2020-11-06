@@ -6,6 +6,7 @@ import Venda from './components/Venda/Venda.vue'
 import RelatorioForm from './components/Venda/RelatorioVendas.vue'
 import RealizarVenda from './components/Venda/RealizarVenda.vue'
 import Cliente from './components/Cliente/Cliente.vue'
+import Vendedor from './components/Vendedor/Vendedor.vue'
 
 Vue.use(Router);
 
@@ -41,6 +42,11 @@ const router = new Router({
             path: '/cliente',
             name: 'Cliente',
             component: Cliente
+        },
+        {
+            path: '/vendedor',
+            name: 'Vendedor',
+            component: Vendedor
         }
     ]
 });
