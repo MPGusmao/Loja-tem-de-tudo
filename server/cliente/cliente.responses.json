@@ -8,5 +8,15 @@
             "status": 500,
             "message": "Error when inserting the client"
         }
+    },
+    "GET_CLIENTS": {
+        "success": {
+            "status": 200,
+            "message": "Clients retrived with success"
+        },
+        "error": {
+            "status": 500,
+            "message": "Error when retriving the clients"
+        }
     }
 }

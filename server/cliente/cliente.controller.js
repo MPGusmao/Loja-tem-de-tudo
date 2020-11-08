@@ -9,6 +9,17 @@ const createClient = async (req, res) => {
         return res.status(error.status || 500).json(error);
     }
 };
+
+const getClients = async (req, res) => {
+    try {
+        const body = req.body
+        const result = await request.getClients(req.dbConnection)
+        return res.status(result.status).json(result);
+    } catch (error) {
+        return res.status(error.status || 500).json(error);
+    }
+};
 module.exports = {
-    createClient
+    createClient,
+    getClients
 }
