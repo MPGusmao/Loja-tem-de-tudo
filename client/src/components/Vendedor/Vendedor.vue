@@ -61,7 +61,7 @@ export default {
         axios(config)
           .then((result) => {
             this.$router.push({
-              name: "Venda",
+              name: "RealizarVenda",
             });
           })
           .catch((error) => {
