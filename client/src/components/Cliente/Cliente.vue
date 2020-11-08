@@ -79,14 +79,14 @@ export default {
     save() {
       this.$v.data.$touch();
       const config = {
-          method: 'post',
-          url: '/api/cliente/create',
-          data: this.data
+        method: "post",
+        url: "/api/cliente/create",
+        data: this.data,
       };
       axios(config)
         .then((result) => {
           this.$router.push({
-            name: "Venda",
+            name: "RealizarVenda",
           });
         })
         .catch((error) => {
