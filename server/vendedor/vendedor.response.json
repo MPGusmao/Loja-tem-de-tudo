@@ -8,5 +8,15 @@
             "status": 500,
             "message": "Error when inserting the salesman"
         }
+    },
+    "GET_ALL_SALESMAN": {
+        "success": {
+            "status": 200,
+            "message": "All Salesman retrived with success"
+        },
+        "error": {
+            "status": 500,
+            "message": "Error when retriving all salesman"
+        }
     }
 }

@@ -22,6 +22,20 @@ const createSalesman = async (connection, body) => {
     }
 };
 
+const getAllSalesman = async (connection) => {
+    try {
+        const query = `
+            SELECT
+                NOME_VENDEDOR
+            FROM
+                XCV90760.VENDEDOR`;
+        const result = await connection.query(query)
+        return { data: result, ...responses.GET_ALL_SALESMAN.success };
+    } catch (error) {
+        return { error, ...responses.GET_ALL_SALESMAN.error };
+    }
+};
 module.exports = {
-    createSalesman
+    createSalesman,
+    getAllSalesman
 }
