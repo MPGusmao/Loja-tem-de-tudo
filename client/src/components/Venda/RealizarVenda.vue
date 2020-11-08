@@ -4,12 +4,18 @@
       <HeaderTitle :title="'Realizar Vendas'" />
       <div class="realizarvenda-form-content-item">
         <div class="realizarvendaform-content-button">
-          <router-link to="/cliente" class="realizarvendaform-content-button-button">
+          <router-link
+            to="/cliente"
+            class="realizarvendaform-content-button-button"
+          >
             <button class="realizarvendaform-button">
               <span>Novo Cliente</span>
             </button>
           </router-link>
-          <router-link to="/vendedor" class="realizarvendaform-content-button-button">
+          <router-link
+            to="/vendedor"
+            class="realizarvendaform-content-button-button"
+          >
             <button class="realizarvendaform-button">
               <span>Novo Vendedor</span>
             </button>
@@ -17,15 +23,27 @@
         </div>
       </div>
       <div class="realizarvendaform-content-item">
-        <SelectField :label="'Cliente:'" :selectOptions="clientes" />
+        <SelectField
+          :label="'Cliente:'"
+          :selectOptions="clientes"
+          v-model="data.NOME_CLIENTE"
+        />
       </div>
       <div class="realizarvendaform-content-item">
-        <SelectField :label="'Vendedor:'" :selectOptions="clientes" />
+        <SelectField
+          :label="'Vendedor:'"
+          :selectOptions="vendedores"
+          v-model="data.NOME_VENDEDOR"
+        />
       </div>
       <div class="realizarvendaform-content-item">
-        <SelectField :label="'Produto:'" :selectOptions="produtos" />
+        <SelectField
+          :label="'Produto:'"
+          :selectOptions="produtos"
+          v-model="data.NOME_PRODUTO"
+        />
       </div>
-      <div class="realizarvendaform-content-item">
+      <!-- <div class="realizarvendaform-content-item">
         <InputField
           :type="'number'"
           :label="'Quantidade:'"
@@ -36,7 +54,7 @@
           :label="'Valor:'"
           :selectOptions="produtos"
         />
-      </div>
+      </div> -->
       <div class="realizarvendaform-content-item">
         <div class="realizarvendaform-content-button">
           <div class="realizarvendaform-content-button-button">
@@ -53,6 +71,7 @@
 import HeaderTitle from "../SharedComponents/HeaderTitle.vue";
 import SelectField from "../SharedComponents/SelectField.vue";
 import InputField from "../SharedComponents/InputField.vue";
+import axios from "axios";
 export default {
   name: "RealizarVenda",
   components: {
@@ -62,9 +81,54 @@ export default {
   },
   data() {
     return {
-      clientes: ["Manoel", "Bruna", "Jose"],
-      produtos: ["Caderno 10 materias", "Estojo", "Vaso de flor"],
+      data: {},
+      clientes: [""],
+      vendedores: [""],
+      produtos: [""],
     };
+  },
+  mounted() {
+    const config = {
+      method: "get",
+      url: "/api/cliente/all",
+    };
+    axios(config)
+      .then((result) => {
+        for (let i = 0; i < result.data.data.length; i++) {
+          this.clientes.push(result.data.data[i].NOME_CLIENTE);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    const configVendedor = {
+      method: "get",
+      url: "/api/vendedor/all",
+    };
+    axios(configVendedor)
+      .then((result) => {
+        for (let i = 0; i < result.data.data.length; i++) {
+          this.vendedores.push(result.data.data[i].NOME_VENDEDOR);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    const configProdutos = {
+      method: "get",
+      url: "/api/produto/product",
+    };
+    axios(configProdutos)
+      .then((result) => {
+        for (let i = 0; i < result.data.data.length; i++) {
+          this.produtos.push(result.data.data[i].NOME_PRODUTO);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 </script>

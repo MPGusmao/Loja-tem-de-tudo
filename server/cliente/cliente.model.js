@@ -26,6 +26,21 @@ const createClient = async (connection, body) => {
     }
 };
 
+const getClients = async (connection) => {
+    try {
+        const query = `
+            SELECT 
+                NOME_CLIENTE
+            FROM
+                XCV90760.CLIENTE`;
+        const result = await connection.query(query)
+        return { data: result, ...responses.GET_CLIENTS.success };
+    } catch (error) {
+        return { error, ...responses.GET_CLIENTS.error };
+    }
+};
+
 module.exports = {
-    createClient
+    createClient,
+    getClients
 }
