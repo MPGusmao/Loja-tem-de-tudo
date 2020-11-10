@@ -244,7 +244,7 @@ export default {
   width: 100%;
 }
 .produtoform-content-item .input-field-content-item-label {
-  width: 25%;
+  width: 100%;
 }
 .produtoform-footer {
   display: flex;
