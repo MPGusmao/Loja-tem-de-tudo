@@ -12,7 +12,6 @@ const createSale = async (req, res) => {
         const result = await request.createSale(req.dbConnection, resultClient.data[0].ID, resultSalesman.data[0].ID, body)
         return res.status(result.status).json(result);
     } catch (error) {
-        console.log(error)
         return res.status(error.status || 500).json(error);
     }
 };
