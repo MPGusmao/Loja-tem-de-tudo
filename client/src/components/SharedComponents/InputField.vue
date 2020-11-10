@@ -3,6 +3,8 @@
     <div class="input-field-content">
       <div class="input-field-content-item">
         <label class="input-field-content-item-label">{{ label }}</label>
+      </div>
+      <div class="input-field-content-item">
         <input
           class="input-field-input"
           :type="type"
