@@ -48,5 +48,15 @@
             "status": 500,
             "message": "Error when removing the product"
         }
+    },
+    "GET_PRODUCT_PRICE": {
+        "success": {
+            "status": 200,
+            "message": "Product and price retrived with success"
+        },
+        "error": {
+            "status": 500,
+            "message": "Error when retring the product and price"
+        }
     }
 }

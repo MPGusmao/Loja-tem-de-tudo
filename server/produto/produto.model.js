@@ -130,10 +130,28 @@ const removeProduct = async (connection, id) => {
         return { error, ...responses.REMOVE_PRODUCT.error };
     }
 };
+
+const getProductPrice = async (connection, produto) => {
+    try {
+        const query = `
+            SELECT
+                PRECO_VENDA
+            FROM 
+                XCV90760.PRODUTO
+            WHERE 
+                NOME_PRODUTO ='${produto}';`;
+        const result = await connection.query(query)
+        return { data: result, ...responses.GET_PRODUCT_PRICE.success };
+    } catch (error) {
+        return { error, ...responses.GET_PRODUCT_PRICE.error };
+    }
+};
+
 module.exports = {
     createProduct,
     getAllProduct,
     getProductById,
     updateProduct,
-    removeProduct
+    removeProduct,
+    getProductPrice
 }
