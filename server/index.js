@@ -19,6 +19,7 @@ const db2Schemas = require('./database/db2.schemas');
 const produto = require('./produto');
 const cliente = require('./cliente');
 const vendedor = require('./vendedor');
+const venda = require('./venda')
 
 
 
@@ -42,9 +43,10 @@ module.exports = (app, dirname) => {
 
 
     //endpoints
-    api.use('/produto', produto(Router))
-    api.use('/cliente', cliente(Router))
-    api.use('/vendedor', vendedor(Router))
+    api.use('/produto', produto(Router));
+    api.use('/cliente', cliente(Router));
+    api.use('/vendedor', vendedor(Router));
+    api.use('/venda', venda(Router));
 
 
     // Serve static files

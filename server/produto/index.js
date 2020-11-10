@@ -8,6 +8,7 @@ module.exports = (Router) => {
     router.post('/byid', controller.getProductById);
     router.post('/update', controller.updateProduct);
     router.post('/remove', controller.removeProduct);
+    router.post('/product_price', controller.getProductPrice)
 
     return router;
 };

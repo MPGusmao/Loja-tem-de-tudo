@@ -40,7 +40,23 @@ const getClients = async (connection) => {
     }
 };
 
+const getClientByName = async (connection, client) => {
+    try {
+        const query = `
+            SELECT 
+                ID
+            FROM
+                XCV90760.CLIENTE
+            WHERE 
+                NOME_CLIENTE = '${client}' `;
+        const result = await connection.query(query)
+        return { data: result, ...responses.GET_CLIENTS.success };
+    } catch (error) {
+
+    }
+}
 module.exports = {
     createClient,
-    getClients
+    getClients,
+    getClientByName
 }

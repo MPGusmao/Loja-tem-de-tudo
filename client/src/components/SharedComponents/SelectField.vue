@@ -3,11 +3,20 @@
     <div class="select-field-content">
       <div class="select-field-content-item">
         <label class="select-field-content-label">{{ label }}</label>
+      </div>
+      <div class="select-field-content-item">
         <select class="select-field-select" @change="onChange" :value="value">
           <option v-for="item in selectOptions" :key="item">
             {{ item }}
           </option>
         </select>
+      </div>
+      <div class="select-field-content-item" v-if="validate">
+        <span
+          class="select-field-content-item-req-message"
+          v-if="!$v.required && $v.$error"
+          >Preencha esse campo</span
+        >
       </div>
     </div>
   </div>
@@ -24,9 +33,15 @@ export default {
         return [{ option: "No options" }];
       },
     },
+    $v: { type: Object, default: () => null },
+    required: { type: Boolean, default: false },
+    validate: { type: Boolean, default: false }, 
   },
   methods: {
     onChange(event) {
+      if (this.$v) {
+        this.$v.$touch();
+      }
       this.$emit("input", event.target.value);
     },
   },
@@ -35,7 +50,7 @@ export default {
 <style lang="scss">
 .select-field {
   display: flex;
-  // width: 100%;
+  width: 100%;
 }
 .select-field-content {
   display: flex;
@@ -65,5 +80,9 @@ export default {
   padding: 0.5rem;
   width: 100%;
   padding-right: 0.1rem;
+}
+.select-field-content-item-req-message {
+  font-size: 0.7rem;
+  color: red;
 }
 </style>

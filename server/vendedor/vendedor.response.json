@@ -18,5 +18,15 @@
             "status": 500,
             "message": "Error when retriving all salesman"
         }
+    },
+    "GET_SALESMAN_BY_NAME": {
+        "success": {
+            "status": 200,
+            "message": "Salesman by name retrived with success"
+        },
+        "error": {
+            "status": 500,
+            "message": "Error when retriving salesman by name"
+        }
     }
 }

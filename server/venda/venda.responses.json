@@ -1,0 +1,12 @@
+{
+    "CREATE_SALE":{
+        "success":{
+            "status": 200,
+            "message": "Sale inserted with success"
+        },
+        "error":{
+            "status": 500,
+            "message": "Error when inserting the sale"
+        }
+    }
+}

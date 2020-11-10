@@ -27,6 +27,8 @@
           :label="'Cliente:'"
           :selectOptions="clientes"
           v-model="data.NOME_CLIENTE"
+          :$v="$v.data.NOME_CLIENTE"
+          :validate="true"
         />
       </div>
       <div class="realizarvendaform-content-item">
@@ -34,6 +36,8 @@
           :label="'Vendedor:'"
           :selectOptions="vendedores"
           v-model="data.NOME_VENDEDOR"
+          :$v="$v.data.NOME_VENDEDOR"
+          :validate="true"
         />
       </div>
       <div class="realizarvendaform-content-item">
@@ -41,24 +45,31 @@
           :label="'Produto:'"
           :selectOptions="produtos"
           v-model="data.NOME_PRODUTO"
+          @input="getPrice"
+          :$v="$v.data.NOME_PRODUTO"
+          :validate="true"
         />
-      </div>
-      <!-- <div class="realizarvendaform-content-item">
         <InputField
           :type="'number'"
           :label="'Quantidade:'"
-          :selectOptions="produtos"
+          v-model="data.QUANTIDADE"
+          @input="sum"
+          :$v="$v.data.QUANTIDADE"
+          :validate="true"
         />
         <InputField
           :type="'number'"
-          :label="'Valor:'"
-          :selectOptions="produtos"
+          :label="'Total R$:'"
+          :readOnly="true"
+          v-model="this.data.valor"
+          :$v="$v.data.valor"
+          :validate="true"
         />
-      </div> -->
+      </div>
       <div class="realizarvendaform-content-item">
         <div class="realizarvendaform-content-button">
           <div class="realizarvendaform-content-button-button">
-            <button class="realizarvendaform-button">
+            <button class="realizarvendaform-button" @click="save()">
               <span>Gravar Venda</span>
             </button>
           </div>
@@ -71,7 +82,15 @@
 import HeaderTitle from "../SharedComponents/HeaderTitle.vue";
 import SelectField from "../SharedComponents/SelectField.vue";
 import InputField from "../SharedComponents/InputField.vue";
+import { required } from "vuelidate/lib/validators";
 import axios from "axios";
+const restrictions = {
+  nome_cliente: { required: true },
+  nome_vendedor: { required: true },
+  nome_produto: { required: true },
+  quantidade: { required: true },
+  valor: { required: true },
+};
 export default {
   name: "RealizarVenda",
   components: {
@@ -79,13 +98,81 @@ export default {
     SelectField,
     InputField,
   },
+  validations() {
+    return {
+      data: {
+        NOME_CLIENTE: {
+          required: restrictions.nome_cliente.required ? required : undefined,
+        },
+        NOME_VENDEDOR: {
+          required: restrictions.nome_vendedor.required ? required : undefined,
+        },
+        NOME_PRODUTO: {
+          required: restrictions.nome_produto.required ? required : undefined,
+        },
+        QUANTIDADE: {
+          required: restrictions.quantidade.required ? required : undefined,
+        },
+        valor: {
+          required: restrictions.valor.required ? required : undefined,
+        },
+      },
+    };
+  },
   data() {
     return {
-      data: {},
-      clientes: [""],
-      vendedores: [""],
-      produtos: [""],
+      data: {
+        valor: "",
+      },
+      clientes: ["Escolha um cliente..."],
+      vendedores: ["Escolha um vendedor..."],
+      produtos: ["Escolha um produto..."],
     };
+  },
+  methods: {
+    getPrice() {
+      const config = {
+        method: "post",
+        url: "/api/produto/product_price",
+        data: this.data,
+      };
+      axios(config)
+        .then((result) => {
+          this.valor = result.data.data[0];
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    sum(value) {
+      const sum = value * this.valor.PRECO_VENDA;
+      this.data.valor = sum.toFixed(2);
+    },
+    save() {
+      this.$v.$touch();
+      if (
+        this.data.NOME_CLIENTE != "" &&
+        this.data.NOME_VENDEDOR != "" &&
+        this.data.NOME_PRODUTO != "" &&
+        this.data.QUANTIDADE != "" &&
+        this.data.valor != ""
+      ) {
+        const config = {
+          method: "post",
+          url: "/api/venda/create",
+          data: this.data,
+        };
+        axios(config)
+          .then((result) => {
+            this.$router.push({
+              name: "Venda",
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    },
   },
   mounted() {
     const config = {
@@ -147,6 +234,7 @@ export default {
 }
 .realizarvendaform-content-item {
   display: flex;
+  justify-content: center;
 }
 .realizarvendaform-content-item .select-field {
   width: 100%;
