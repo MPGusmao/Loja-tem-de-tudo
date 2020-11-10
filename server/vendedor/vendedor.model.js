@@ -35,7 +35,25 @@ const getAllSalesman = async (connection) => {
         return { error, ...responses.GET_ALL_SALESMAN.error };
     }
 };
+
+const getSalesmanByName = async (connection, salesman) => {
+    try {
+        const query = `
+            SELECT
+                ID
+            FROM
+                XCV90760.VENDEDOR
+            WHERE 
+                NOME_VENDEDOR = '${salesman}'`;
+        const result = await connection.query(query)
+        return { data: result, ...responses.GET_SALESMAN_BY_NAME.success };
+    } catch (error) {
+        return { error, ...responses.GET_SALESMAN_BY_NAME.error };
+    }
+};
+
 module.exports = {
     createSalesman,
-    getAllSalesman
+    getAllSalesman,
+    getSalesmanByName
 }
