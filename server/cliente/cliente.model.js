@@ -41,7 +41,7 @@ const getClients = async (connection) => {
 };
 
 const getClientByName = async (connection, client) => {
-    try {console.log(client)
+    try {
         const query = `
             SELECT 
                 ID
