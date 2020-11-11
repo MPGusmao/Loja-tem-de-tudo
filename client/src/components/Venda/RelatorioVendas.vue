@@ -3,7 +3,7 @@
     <div class="relatoriovenda-content">
       <HeaderTitle :title="'Relatório de Vendas'" />
       <div class="relatoriovenda-content-item-item">
-        Relatório de {{ data.dataIni }} a {{ data.dataFim }}
+        Relatório de {{ data.DATE_INI }} a {{ data.DATE_FIM }}
       </div>
       <div class="relatoriovenda-content-item-item">
         Total Vendido: {{ data.total }}
@@ -47,8 +47,8 @@ export default {
     return {
       clientes: ["Nome", "Valor"],
       vendedores: ["Nome", "Valor"],
-      clientesData: [{ nome: "Manoel", valor: "R$: 100,00" }],
-      vendedoresData: [{ nome: "Joaozinho", valor: "R$: 75,00" }],
+      clientesData: [],
+      vendedoresData: [],
       data: {},
     };
   },
