@@ -8,5 +8,15 @@
             "status": 500,
             "message": "Error when inserting the sale"
         }
+    },
+    "GET_ALL_SALES":{
+        "success":{
+            "status": 200,
+            "message": "Al Sales retrived with success"
+        },
+        "error":{
+            "status": 500,
+            "message": "Error when retriving all sales"
+        }
     }
 }

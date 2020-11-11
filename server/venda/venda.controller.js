@@ -16,6 +16,18 @@ const createSale = async (req, res) => {
     }
 };
 
+const getAllSales = async (req, res) => {
+    try {
+        const date_ini = req.body.DATE_INI
+        const date_fim = req.body.DATE_FIM
+        const result = await request.getAllSales(req.dbConnection, date_ini, date_fim)
+        return res.status(result.status).json(result);
+    } catch (error) {
+        return res.status(error.status || 500).json(error);
+    }
+};
+
 module.exports = {
-    createSale
+    createSale,
+    getAllSales
 }
