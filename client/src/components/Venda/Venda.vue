@@ -3,12 +3,12 @@
     <div class="vendaform-content">
       <HeaderTitle :title="'Vendas'" />
       <div class="vendaform-content-item-date">
-        <InputField :type="'date'" v-model="data.dataIni" />
-        <InputField :type="'date'" v-model="data.dataFim" />
+        <InputField :type="'date'" v-model="data.DATE_INI" />
+        <InputField :type="'date'" v-model="data.DATE_FIM" />
         <div class="vendaform-content-item">
           <div class="vendaform-content-button">
-            <router-link to="/analise" class="vendaform-content-button-button">
-              <button class="vendaform-button">
+            <router-link to="" class="vendaform-content-button-button">
+              <button class="vendaform-button" @click="filter()">
                 <span>Filtrar no Período</span>
               </button>
             </router-link>
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="vendaform-content-item">
-        <DataTable :columns="columns" :data="data" />
+        <DataTable :columns="columns" :data="row" />
       </div>
     </div>
   </div>
@@ -42,6 +42,7 @@
 import HeaderTitle from "../SharedComponents/HeaderTitle.vue";
 import DataTable from "../SharedComponents/DataTable.vue";
 import InputField from "../SharedComponents/InputField.vue";
+import axios from "axios";
 export default {
   name: "Venda",
   components: {
@@ -53,7 +54,26 @@ export default {
     return {
       columns: ["Data", "Cliente", "Valor", "Vendedor"],
       data: {},
+      row: [],
     };
+  },
+  methods: {
+    filter() {
+      if (this.data.DATE_INI !== "" && this.data.DATE_FIM !== "") {
+        const config = {
+          method: "post",
+          url: "/api/venda/all",
+          data: this.data,
+        };
+        axios(config)
+          .then((result) => {
+            this.row = result.data.data;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    },
   },
 };
 </script>
