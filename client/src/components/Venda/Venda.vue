@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="vendaform-content-item">
-        <DataTable :columns="columns" :data="row" />
+        <DataTable :columns="columns" :data="row" :route="'RealizarVenda'" />
       </div>
     </div>
   </div>
@@ -52,7 +52,7 @@ export default {
   },
   data() {
     return {
-      columns: ["Data", "Cliente", "Valor", "Vendedor"],
+      columns: ["No Venda", "Data", "Cliente", "Valor", "Vendedor"],
       data: {},
       row: [],
     };
