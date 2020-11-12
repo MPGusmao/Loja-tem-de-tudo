@@ -35,7 +35,7 @@ const router = new Router({
         },
         {
             path: '/realizarvenda',
-            name: 'RealziarVenda',
+            name: 'RealizarVenda',
             component: RealizarVenda
         },
         {
