@@ -18,5 +18,35 @@
             "status": 500,
             "message": "Error when retriving all sales"
         }
+    },
+    "GET_SALE_BY_ID":{
+        "success":{
+            "status": 200,
+            "message": "Sale by id retrived with success"
+        },
+        "error":{
+            "status": 500,
+            "message": "Error when retriving sale by id"
+        }
+    },
+    "REMOVE_SALE":{
+        "success":{
+            "status": 200,
+            "message": "Sale removed with success"
+        },
+        "error":{
+            "status": 500,
+            "message": "Error when removing sale"
+        }
+    },
+    "UPDATE_SALE":{
+        "success":{
+            "status": 200,
+            "message": "Sale updated with success"
+        },
+        "error":{
+            "status": 500,
+            "message": "Error when updating sale"
+        }
     }
 }
