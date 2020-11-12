@@ -27,7 +27,45 @@ const getAllSales = async (req, res) => {
     }
 };
 
+const getSaleById = async (req, res) => {
+    try {
+        const id = req.body.id
+        const result = await request.getSaleById(req.dbConnection, id)
+        return res.status(result.status).json(result);
+    } catch (error) {
+        return res.status(error.status || 500).json(error);
+    }
+};
+
+const updateSale = async (req, res) => {
+    try {
+        const id = req.body.ID
+        const body = req.body
+        const client = req.body.NOME_CLIENTE
+        const salesman = req.body.NOME_VENDEDOR
+        const resultClient = await requestClient.getClientByName(req.dbConnection, client)
+        const resultSalesman = await requestSalesman.getSalesmanByName(req.dbConnection, salesman)
+        const result = await request.updateSale(req.dbConnection, resultClient.data[0].ID, resultSalesman.data[0].ID, body, id)
+        return res.status(result.status).json(result);
+    } catch (error) {
+        return res.status(error.status || 500).json(error);
+    }
+};
+
+const removeSale = async (req, res) => {
+    try {
+        const id = req.body.id
+        const result = await request.removeSale(req.dbConnection, id)
+        return res.status(result.status).json(result);
+    } catch (error) {
+        return res.status(error.status || 500).json(error);
+    }
+};
+
 module.exports = {
     createSale,
-    getAllSales
+    getAllSales,
+    getSaleById,
+    updateSale,
+    removeSale
 }

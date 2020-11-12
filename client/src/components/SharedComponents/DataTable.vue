@@ -15,7 +15,7 @@
         <tr v-for="(itemRow, index) in data" :key="index">
           <td v-for="(itemCol, indexCol) in itemRow" :key="indexCol">
             <span v-if="indexCol === 'ID'">
-              <router-link :to="{ name: route, id: itemRow.ID }">{{
+              <router-link :to="{ name: route, query: { id: itemRow.ID } }">{{
                 itemCol
               }}</router-link>
             </span>
