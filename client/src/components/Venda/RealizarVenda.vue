@@ -52,17 +52,17 @@
         <InputField
           :type="'number'"
           :label="'Quantidade:'"
-          v-model="data.QUANTIDADE"
+          v-model="data.QTDE"
           @input="sum"
-          :$v="$v.data.QUANTIDADE"
+          :$v="$v.data.QTDE"
           :validate="true"
         />
         <InputField
           :type="'number'"
           :label="'Total R$:'"
           :readOnly="true"
-          v-model="this.data.valor"
-          :$v="$v.data.valor"
+          v-model="data.VALOR"
+          :$v="$v.data.VALOR"
           :validate="true"
         />
       </div>
@@ -71,6 +71,11 @@
           <div class="realizarvendaform-content-button-button">
             <button class="realizarvendaform-button" @click="save()">
               <span>Gravar Venda</span>
+            </button>
+          </div>
+          <div v-if="data.ID" class="realizarvendaform-content-button-button">
+            <button class="realizarvendaform-button" @click="remove()">
+              <span>Excluir Venda</span>
             </button>
           </div>
         </div>
@@ -88,7 +93,7 @@ const restrictions = {
   nome_cliente: { required: true },
   nome_vendedor: { required: true },
   nome_produto: { required: true },
-  quantidade: { required: true },
+  qtde: { required: true },
   valor: { required: true },
 };
 export default {
@@ -110,10 +115,10 @@ export default {
         NOME_PRODUTO: {
           required: restrictions.nome_produto.required ? required : undefined,
         },
-        QUANTIDADE: {
-          required: restrictions.quantidade.required ? required : undefined,
+        QTDE: {
+          required: restrictions.qtde.required ? required : undefined,
         },
-        valor: {
+        VALOR: {
           required: restrictions.valor.required ? required : undefined,
         },
       },
@@ -122,11 +127,11 @@ export default {
   data() {
     return {
       data: {
-        valor: "",
+        id: this.$route.query.id,
       },
-      clientes: ["Escolha um cliente..."],
-      vendedores: ["Escolha um vendedor..."],
-      produtos: ["Escolha um produto..."],
+      clientes: [],
+      vendedores: [],
+      produtos: [],
     };
   },
   methods: {
@@ -146,7 +151,7 @@ export default {
     },
     sum(value) {
       const sum = value * this.valor.PRECO_VENDA;
-      this.data.valor = sum.toFixed(2);
+      this.data.VALOR = sum.toFixed(2);
     },
     save() {
       this.$v.$touch();
@@ -154,14 +159,18 @@ export default {
         this.data.NOME_CLIENTE != "" &&
         this.data.NOME_VENDEDOR != "" &&
         this.data.NOME_PRODUTO != "" &&
-        this.data.QUANTIDADE != "" &&
-        this.data.valor != ""
+        this.data.QTDE != "" &&
+        this.data.VALOR != ""
       ) {
         const config = {
           method: "post",
-          url: "/api/venda/create",
           data: this.data,
         };
+        if (this.data.ID) {
+          config.url = "/api/venda/update";
+        } else {
+          config.url = "/api/venda/create";
+        }
         axios(config)
           .then((result) => {
             this.$router.push({
@@ -172,6 +181,22 @@ export default {
             console.log(error);
           });
       }
+    },
+    remove() {
+      const config = {
+        method: "post",
+        url: "/api/venda/remove",
+        data: this.$route.query,
+      };
+      axios(config)
+        .then((result) => {
+          this.$router.push({
+            name: "Venda",
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
   mounted() {
@@ -216,6 +241,21 @@ export default {
       .catch((error) => {
         console.log(error);
       });
+
+    if (this.data.id) {
+      const config = {
+        method: "post",
+        url: "/api/venda/byId",
+        data: this.$route.query,
+      };
+      axios(config)
+        .then((result) => {
+          this.data = result.data.data[0];
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   },
 };
 </script>
