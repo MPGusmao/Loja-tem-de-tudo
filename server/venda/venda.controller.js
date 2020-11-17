@@ -62,10 +62,34 @@ const removeSale = async (req, res) => {
     }
 };
 
+const getReportSale = async (req, res) => {
+    try {
+        const dateIni = req.body.dateIni
+        const dateFim = req.body.dateFim
+        const result = await request.getReportSale(req.dbConnection, dateIni, dateFim)
+        return res.status(result.status).json(result);
+    } catch (error) {
+        return res.status(error.status || 500).json(error);
+    }
+};
+
+const getReportSalesman = async (req, res) => {
+    try {
+        const dateIni = req.body.dateIni
+        const dateFim = req.body.dateFim
+        const result = await request.getReportSalesman(req.dbConnection, dateIni, dateFim)
+        return res.status(result.status).json(result);
+    } catch (error) {
+        return res.status(error.status || 500).json(error);
+    }
+};
+
 module.exports = {
     createSale,
     getAllSales,
     getSaleById,
     updateSale,
-    removeSale
+    removeSale,
+    getReportSale,
+    getReportSalesman
 }

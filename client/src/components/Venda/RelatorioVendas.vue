@@ -3,13 +3,26 @@
     <div class="relatoriovenda-content">
       <HeaderTitle :title="'Relatório de Vendas'" />
       <div class="relatoriovenda-content-item-item">
-        Relatório de {{ data.DATE_INI }} a {{ data.DATE_FIM }}
+        <span
+          >Relatório de <strong>{{ data.DATE_INI }}</strong> a
+          <strong>{{ data.DATE_FIM }}</strong></span
+        >
       </div>
       <div class="relatoriovenda-content-item-item">
-        Total Vendido: {{ data.total }}
+        <span v-if="data.TOTAL"
+          >Total Vendido: <strong>{{ data.TOTAL }}</strong></span
+        >
+        <span v-if="!data.TOTAL"
+          >Total Vendido: <strong>{{ "R$: 0,00" }}</strong></span
+        >
       </div>
       <div class="relatoriovenda-content-item-item">
-        Lucro dos Produtos: {{ data.lucro }}
+        <span v-if="data.LUCRO"
+          >Lucro dos Produtos: <strong> {{ data.LUCRO }} </strong></span
+        >
+        <span v-if="!data.LUCRO"
+          >Lucro dos Produtos: <strong>{{ "R$: 0,00" }}</strong></span
+        >
       </div>
       <div class="relatoriovenda-content-item">
         <div class="relatoriovenda-content-item-datatable">
@@ -17,7 +30,7 @@
             :hasTitle="true"
             :title="'Melhores Clientes'"
             :columns="clientes"
-            :data="clientesData"
+            :data="clients"
           />
         </div>
         <div class="relatoriovenda-content-item-datatable">
@@ -25,7 +38,7 @@
             :hasTitle="true"
             :title="'Melhores Vendedores'"
             :columns="vendedores"
-            :data="vendedoresData"
+            :data="salesman"
           />
         </div>
       </div>
@@ -36,6 +49,7 @@
 import HeaderTitle from "../SharedComponents/HeaderTitle.vue";
 import InputField from "../SharedComponents/InputField.vue";
 import DataTable from "../SharedComponents/DataTable.vue";
+import axios from "axios";
 export default {
   name: "RelatorioVendas",
   components: {
@@ -45,12 +59,42 @@ export default {
   },
   data() {
     return {
-      clientes: ["Nome", "Valor"],
-      vendedores: ["Nome", "Valor"],
-      clientesData: [],
-      vendedoresData: [],
+      clientes: ["Nome", "Total"],
+      vendedores: ["Nome", "Total"],
+      clients: [],
+      salesman: [],
       data: {},
     };
+  },
+  mounted() {
+    this.data.DATE_INI = this.$route.query.dateIni;
+    this.data.DATE_FIM = this.$route.query.dateFim;
+
+    const config = {
+      method: "post",
+      url: "/api/venda/report",
+      data: this.$route.query,
+    };
+    axios(config)
+      .then((result) => {
+        this.clients = result.data.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    const configSalesman = {
+      method: "post",
+      url: "/api/venda/reportSalesman",
+      data: this.$route.query,
+    };
+    axios(configSalesman)
+      .then((result) => {
+        this.salesman = result.data.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 </script>

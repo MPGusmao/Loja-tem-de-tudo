@@ -237,25 +237,24 @@ export default {
         for (let i = 0; i < result.data.data.length; i++) {
           this.produtos.push(result.data.data[i].NOME_PRODUTO);
         }
+        if (this.data.id) {
+          const config = {
+            method: "post",
+            url: "/api/venda/byId",
+            data: this.$route.query,
+          };
+          axios(config)
+            .then((result) => {
+              this.data = result.data.data[0];
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
       })
       .catch((error) => {
         console.log(error);
       });
-
-    if (this.data.id) {
-      const config = {
-        method: "post",
-        url: "/api/venda/byId",
-        data: this.$route.query,
-      };
-      axios(config)
-        .then((result) => {
-          this.data = result.data.data[0];
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
   },
 };
 </script>

@@ -25,7 +25,12 @@
               <span>Realizar Venda</span>
             </button>
           </router-link>
-          <router-link to="/analise" class="vendaform-content-button-button">
+          <router-link
+            :to="
+              '/analise?dateIni=' + data.DATE_INI + '&dateFim=' + data.DATE_FIM
+            "
+            class="vendaform-content-button-button"
+          >
             <button class="vendaform-button">
               <span>Relatório de Vendas</span>
             </button>
@@ -72,6 +77,14 @@ export default {
           .catch((error) => {
             console.log(error);
           });
+      }
+    },
+    format(data) {
+      if (data) {
+        console.log("value", data);
+        let value = varchar_format("DD/MM/AAAA", data);
+        console.log(value);
+        return new Date(value);
       }
     },
   },

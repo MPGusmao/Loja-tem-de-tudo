@@ -1,4 +1,6 @@
 const responses = require('./venda.responses.json');
+const { parseResult } = require('../utils/index.js');
+const { parseResultArray } = require('../utils/index.js');
 
 const createSale = async (connection, clientId, salesmanId, body) => {
     try {
@@ -160,10 +162,70 @@ const updateSale = async (connection, clientId, salesmanId, body, id) => {
     }
 };
 
+const getReportSale = async (connection, date_ini, date_fim) => {
+    try {
+        if (!date_ini || !date_fim || date_ini > date_fim) {
+            throw new Error(`Date Inital or date final is undefined or date Initial is bigger than date final`)
+        }
+
+        const query = `
+        SELECT
+            C.NOME_CLIENTE,
+            VI.PRECO AS VALOR             
+        FROM 
+            XCV90760.VENDA AS V
+        INNER JOIN 
+            XCV90760.VENDA_ITEM AS VI ON V.ID = VI.VENDA_ID
+        INNER JOIN 
+            XCV90760.CLIENTE AS C ON V.CLIENTE_ID = C.ID
+        INNER JOIN 
+            XCV90760.VENDEDOR AS VE ON V.VENDEDOR_ID = VE.ID
+        WHERE 
+            VARCHAR_FORMAT(DATE, 'YYYY-MM-DD') BETWEEN '${date_ini}' AND '${date_fim}'
+            ORDER BY C.NOME_CLIENTE;`
+        const result = await connection.query(query)
+
+        return { data: parseResult(result), ...responses.GET_REPORT_SALE.success };
+    } catch (error) {
+        return { error, ...responses.GET_REPORT_SALE.error };
+    }
+};
+
+const getReportSalesman = async (connection, date_ini, date_fim) => {
+    try {
+        if (!date_ini || !date_fim || date_ini > date_fim) {
+            throw new Error(`Date Inital or date final is undefined or date Initial is bigger than date final`)
+        }
+
+        const query = `
+        SELECT
+            VE.NOME_VENDEDOR,
+            VI.PRECO AS VALOR             
+        FROM 
+            XCV90760.VENDA AS V
+        INNER JOIN 
+            XCV90760.VENDA_ITEM AS VI ON V.ID = VI.VENDA_ID
+        INNER JOIN 
+            XCV90760.CLIENTE AS C ON V.CLIENTE_ID = C.ID
+        INNER JOIN 
+            XCV90760.VENDEDOR AS VE ON V.VENDEDOR_ID = VE.ID
+        WHERE 
+            VARCHAR_FORMAT(DATE, 'YYYY-MM-DD') BETWEEN '${date_ini}' AND '${date_fim}'
+            ORDER BY VI.PRECO ASC;`
+        const result = await connection.query(query)
+
+        return { data: parseResultArray(result), ...responses.GET_REPORT_SALESMAN.success };
+    } catch (error) {
+        return { error, ...responses.GET_REPORT_SALESMAN.error };
+    }
+};
+
 module.exports = {
     createSale,
     getAllSales,
     getSaleById,
     removeSale,
-    updateSale
+    updateSale,
+    getReportSale,
+    getReportSalesman
 }
