@@ -24,6 +24,10 @@
 <script>
 export default {
   name: "SelectField",
+  model: {
+    prop: "value",
+    event: "input"
+  },
   props: {
     label: { type: String, default: null },
     value: { default: null },
@@ -35,7 +39,7 @@ export default {
     },
     $v: { type: Object, default: () => null },
     required: { type: Boolean, default: false },
-    validate: { type: Boolean, default: false }, 
+    validate: { type: Boolean, default: false },
   },
   methods: {
     onChange(event) {
