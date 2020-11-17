@@ -48,5 +48,25 @@
             "status": 500,
             "message": "Error when updating sale"
         }
+    },
+    "GET_REPORT_SALE":{
+        "success":{
+            "status": 200,
+            "message": "report sales retrived with success"
+        },
+        "error":{
+            "status": 500,
+            "message": "Error when retriving report sales"
+        }
+    },
+    "GET_REPORT_SALESMAN":{
+        "success":{
+            "status": 200,
+            "message": "report best salesman retrived with success"
+        },
+        "error":{
+            "status": 500,
+            "message": "Error when retriving the report salesman"
+        }
     }
 }
