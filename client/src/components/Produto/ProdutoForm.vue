@@ -196,7 +196,7 @@ export default {
       const config = {
         method: "post",
         url: "/api/produto/remove",
-        data: this.$route.query
+        data: this.$route.query,
       };
       axios(config)
         .then((result) => {
@@ -211,8 +211,12 @@ export default {
   },
   mounted() {
     if (this.data.id) {
-      axios
-        .post("/api/produto/byid", this.data)
+      const config = {
+        method: "post",
+        url: "/api/produto/byid",
+        data: this.data,
+      };
+      axios(config)
         .then((result) => {
           this.data = result.data.data[0];
         })
