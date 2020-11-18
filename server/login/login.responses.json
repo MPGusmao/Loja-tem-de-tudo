@@ -1,0 +1,12 @@
+{
+    "GET_USER_BY_ID": {
+        "success": {
+            "status": 200,
+            "message": "User retrived with success"
+        },
+        "error": {
+            "status": 500,
+            "message": "Error when retriving the user"
+        }
+    }
+}
