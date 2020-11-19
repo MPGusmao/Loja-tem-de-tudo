@@ -50,7 +50,7 @@ const router = new Router({
             component: Vendedor
         },
         {
-            path: '/login',
+            path:'/login',
             component: Login
         }
     ]
