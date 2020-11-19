@@ -147,11 +147,30 @@ const getProductPrice = async (connection, produto) => {
     }
 };
 
+const getProductByName = async (connection, name) => {
+    try {
+        if (!name) {
+            throw new Error(`ID is not defined: ${name}`)
+        }
+        const query = `
+            SELECT
+                ID
+            FROM XCV90760.PRODUTO
+            WHERE 
+                NOME_PRODUTO = '${name}';`;
+        const result = await connection.query(query)
+        return { data: result, ...responses.GET_PRODUCT_BY_NAME.success };
+    } catch (error) {
+        return { error, ...responses.GET_PRODUCT_BY_NAME.error };
+    }
+};
+
 module.exports = {
     createProduct,
     getAllProduct,
     getProductById,
     updateProduct,
     removeProduct,
-    getProductPrice
+    getProductPrice,
+    getProductByName
 }
