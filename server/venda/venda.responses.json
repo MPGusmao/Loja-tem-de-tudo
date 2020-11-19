@@ -1,72 +1,82 @@
 {
-    "CREATE_SALE":{
-        "success":{
+    "CREATE_SALE": {
+        "success": {
             "status": 200,
             "message": "Sale inserted with success"
         },
-        "error":{
+        "error": {
             "status": 500,
             "message": "Error when inserting the sale"
         }
     },
-    "GET_ALL_SALES":{
-        "success":{
+    "GET_ALL_SALES": {
+        "success": {
             "status": 200,
             "message": "Al Sales retrived with success"
         },
-        "error":{
+        "error": {
             "status": 500,
             "message": "Error when retriving all sales"
         }
     },
-    "GET_SALE_BY_ID":{
-        "success":{
+    "GET_SALE_BY_ID": {
+        "success": {
             "status": 200,
             "message": "Sale by id retrived with success"
         },
-        "error":{
+        "error": {
             "status": 500,
             "message": "Error when retriving sale by id"
         }
     },
-    "REMOVE_SALE":{
-        "success":{
+    "REMOVE_SALE": {
+        "success": {
             "status": 200,
             "message": "Sale removed with success"
         },
-        "error":{
+        "error": {
             "status": 500,
             "message": "Error when removing sale"
         }
     },
-    "UPDATE_SALE":{
-        "success":{
+    "UPDATE_SALE": {
+        "success": {
             "status": 200,
             "message": "Sale updated with success"
         },
-        "error":{
+        "error": {
             "status": 500,
             "message": "Error when updating sale"
         }
     },
-    "GET_REPORT_SALE":{
-        "success":{
+    "GET_REPORT_SALE": {
+        "success": {
             "status": 200,
-            "message": "report sales retrived with success"
+            "message": "Report sales retrived with success"
         },
-        "error":{
+        "error": {
             "status": 500,
             "message": "Error when retriving report sales"
         }
     },
-    "GET_REPORT_SALESMAN":{
-        "success":{
+    "GET_REPORT_SALESMAN": {
+        "success": {
             "status": 200,
-            "message": "report best salesman retrived with success"
+            "message": "Report best salesman retrived with success"
         },
-        "error":{
+        "error": {
             "status": 500,
             "message": "Error when retriving the report salesman"
+        }
+    },
+    "GET_REPORT_PROFIT": {
+        "success": {
+            "status": 200,
+            "message": "Report with profit retrived with success"
+        },
+        "error": {
+            "status": 500,
+            "message": "Error when retriving the report with profit"
         }
     }
 }

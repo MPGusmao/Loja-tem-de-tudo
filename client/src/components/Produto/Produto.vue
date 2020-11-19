@@ -2,7 +2,12 @@
   <div class="produto">
     <div class="produto-content">
       <div class="produto-content-search">
-        <InputField :placeholder="'Pesquisar produto'" />
+        <HeaderTitle :title="'Produtos'" />
+        <!-- <InputField
+          :placeholder="'Pesquisar produto'"
+          v-model="search"
+          @input="resultQuery"
+        /> -->
       </div>
       <div v-for="(item, index) in data" :key="index">
         <ProdutoItem :item="item" :href="'ProdutoForm'" />
@@ -12,22 +17,26 @@
 </template>
 <script>
 import ProdutoItem from "./ProdutoItem.vue";
-import InputField from "../SharedComponents/InputField.vue";
+import HeaderTitle from "../SharedComponents/HeaderTitle.vue";
 import axios from "axios";
 export default {
   name: "Produto",
   components: {
     ProdutoItem,
-    InputField,
+    HeaderTitle,
   },
   data() {
     return {
       data: {},
+      search: null,
     };
   },
   mounted() {
-    axios
-      .get("/api/produto/product")
+    const config = {
+      method: "get",
+      url: "/api/produto/product",
+    };
+    axios(config)
       .then((result) => {
         this.data = result.data.data;
       })

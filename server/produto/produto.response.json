@@ -58,5 +58,15 @@
             "status": 500,
             "message": "Error when retring the product and price"
         }
+    },
+    "GET_PRODUCT_BY_NAME": {
+        "success": {
+            "status": 200,
+            "message": "Product by name retrived with success"
+        },
+        "error": {
+            "status": 500,
+            "message": "Error when retring the product by name"
+        }
     }
 }

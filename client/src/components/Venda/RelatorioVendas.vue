@@ -10,15 +10,17 @@
       </div>
       <div class="relatoriovenda-content-item-item">
         <span v-if="data.TOTAL"
-          >Total Vendido: <strong>{{ data.TOTAL }}</strong></span
+          >Total Vendido:
+          <strong>{{ "R$: " + data.TOTAL.toFixed(2) }}</strong></span
         >
         <span v-if="!data.TOTAL"
-          >Total Vendido: <strong>{{ "R$: 0,00" }}</strong></span
+          >Total Vendido: <strong>{{ "0,00" }}</strong></span
         >
       </div>
       <div class="relatoriovenda-content-item-item">
         <span v-if="data.LUCRO"
-          >Lucro dos Produtos: <strong> {{ data.LUCRO }} </strong></span
+          >Lucro dos Produtos:
+          <strong> {{ "R$: " + data.LUCRO }} </strong></span
         >
         <span v-if="!data.LUCRO"
           >Lucro dos Produtos: <strong>{{ "R$: 0,00" }}</strong></span
@@ -64,11 +66,15 @@ export default {
       clients: [],
       salesman: [],
       data: {},
+      profit: [],
     };
   },
   mounted() {
     this.data.DATE_INI = this.$route.query.dateIni;
     this.data.DATE_FIM = this.$route.query.dateFim;
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    const reducerSub = (accumulator, currentValue) =>
+      accumulator - currentValue;
 
     const config = {
       method: "post",
@@ -77,7 +83,12 @@ export default {
     };
     axios(config)
       .then((result) => {
+        let valor = [];
         this.clients = result.data.data;
+        for (let i = 0; i < this.clients.length; i++) {
+          valor.push(parseFloat(this.clients[i].VALOR));
+        }
+        this.data.TOTAL = valor.reduce(reducer);
       })
       .catch((error) => {
         console.log(error);
@@ -91,6 +102,29 @@ export default {
     axios(configSalesman)
       .then((result) => {
         this.salesman = result.data.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    const configProfit = {
+      method: "post",
+      url: "/api/venda/reportProfit",
+      data: this.$route.query,
+    };
+    axios(configProfit)
+      .then((result) => {
+        let valor = [];
+        this.profit = result.data.data;
+        for (let i = 0; i < this.profit.length; i++) {
+          valor.push(
+            parseFloat(
+              this.profit[i].QTDE * parseFloat(this.profit[i].PRECO_CUSTO)
+            )
+          );
+        }
+        valor = valor.reduce(reducer);
+        this.data.LUCRO = (this.data.TOTAL - valor).toFixed(2);
       })
       .catch((error) => {
         console.log(error);
