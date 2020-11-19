@@ -10,6 +10,7 @@ module.exports = (Router) => {
     router.post('/remove', controller.removeSale);
     router.post('/report', controller.getReportSale);
     router.post('/reportSalesman', controller.getReportSalesman);
+    router.post('/reportProfit', controller.getReportProfit)
 
     return router;
 };
