@@ -14,7 +14,7 @@ const parseResult = data => {
     });
     for (let id in namespace) {
         for (let i = 0; i < namespace[id].VALOR.length; i++) {
-            total += parseFloat(namespace[id].VALOR[i].split(", ").filter(v => v))
+            total += parseFloat(namespace[id].VALOR[i])
         }
         result.push({
             NOME_CLIENTE: namespace[id].NOME_CLIENTE,
