@@ -78,6 +78,11 @@
               <span>Excluir Venda</span>
             </button>
           </div>
+          <div class="realizarvendaform-content-button-button">
+            <button class="realizarvendaform-button" @click="cancel()">
+              <span>Voltar</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -197,6 +202,11 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    cancel() {
+      this.$router.push({
+        name: "Venda",
+      });
     },
   },
   mounted() {

@@ -68,7 +68,7 @@ export default {
   methods: {
     save() {
       this.$v.data.$touch();
-      if (this.data.EMAIL !== "" && this.data.PASSWORD != "") {
+      if (this.data.EMAIL !== "" && this.data.PASSWORD !== "") {
         const config = {
           method: "post",
           url: "/api/login/byid",
@@ -81,7 +81,7 @@ export default {
             });
           })
           .catch((error) => {
-            this.erro = true;
+            // this.erro = true;
             console.log(error);
           });
       }

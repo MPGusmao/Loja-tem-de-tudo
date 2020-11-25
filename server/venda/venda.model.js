@@ -48,16 +48,16 @@ const createSale = async (connection, clientId, salesmanId, produtoId, body) => 
 
 const getAllSales = async (connection, date_ini, date_fim) => {
     try {
-        if (!date_ini || !date_fim) {
-            throw new Error(`Date Inital or date final is undefined`)
+        if (!date_ini || !date_fim || (date_ini > date_fim)) {
+            throw new Error(`Date Inital, date final is undefined or date initial is bigger than date final`)
         }
         const query = `
             SELECT
                 V.ID,
                 VARCHAR_FORMAT(DATE, 'DD/MM/YYYY') AS DATE,
-                    C.NOME_CLIENTE,
-                    'R$ ' || VI.PRECO AS VALOR,
-                        VE.NOME_VENDEDOR
+                C.NOME_CLIENTE,
+                'R$ ' || VI.PRECO AS VALOR,
+                VE.NOME_VENDEDOR
             FROM
                 XCV90760.VENDA AS V
             INNER JOIN
@@ -124,10 +124,8 @@ const removeSale = async (connection, id) => {
             WHERE
                 ID = ${id}; `;
         const result = await connection.query(query)
-        console.log(result)
         return { data: result, ...responses.REMOVE_SALE.success };
     } catch (error) {
-        console.log(error)
         return { error, ...responses.REMOVE_SALE.error };
     }
 };
@@ -155,7 +153,7 @@ const updateSale = async (connection, clientId, salesmanId, body, id) => {
                 QTDE = '${body.QTDE}',
                 PRECO = '${body.VALOR}'
             WHERE
-            VI.VENDA_ID = '${id}'; `;
+                VI.VENDA_ID = '${id}'; `;
         const resultItem = await connection.query(queryItem)
 
         return { data: resultItem, ...responses.UPDATE_SALE.success };
@@ -175,14 +173,14 @@ const getReportSale = async (connection, date_ini, date_fim) => {
                 C.NOME_CLIENTE,
                 VI.PRECO AS VALOR
             FROM
-            XCV90760.VENDA AS V
+                XCV90760.VENDA AS V
             INNER JOIN
-            XCV90760.VENDA_ITEM AS VI ON V.ID = VI.VENDA_ID
+                XCV90760.VENDA_ITEM AS VI ON V.ID = VI.VENDA_ID
             INNER JOIN
-            XCV90760.CLIENTE AS C ON V.CLIENTE_ID = C.ID
+                XCV90760.CLIENTE AS C ON V.CLIENTE_ID = C.ID
             WHERE
-            VARCHAR_FORMAT(DATE, 'YYYY-MM-DD') BETWEEN '${date_ini}' AND '${date_fim}'
-            ORDER BY C.NOME_CLIENTE; `
+                VARCHAR_FORMAT(DATE, 'YYYY-MM-DD') BETWEEN '${date_ini}' AND '${date_fim}'
+                ORDER BY C.NOME_CLIENTE; `
         const result = await connection.query(query)
 
         return { data: parseResult(result), ...responses.GET_REPORT_SALE.success };
@@ -202,7 +200,7 @@ const getReportSalesman = async (connection, date_ini, date_fim) => {
                 VE.NOME_VENDEDOR,
                 VI.PRECO AS VALOR
             FROM
-            XCV90760.VENDA AS V
+                XCV90760.VENDA AS V
             INNER JOIN
                 XCV90760.VENDA_ITEM AS VI ON V.ID = VI.VENDA_ID
             INNER JOIN
