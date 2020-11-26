@@ -1,5 +1,5 @@
 <template>
-  <div id="services-app">
+  <div class="app">
     <NavBar />
     <router-view />
   </div>
@@ -15,10 +15,8 @@ export default {
 <style lang="scss">
 @import "~@shared/css/general.scss";
 
-#services-app {
+.app {
   font-family: "IBM Plex Sans";
   width: 100%;
-  height: 100%;
-  background-color: #e6e6e6;
 }
 </style>

@@ -59,6 +59,7 @@ export default {
   width: 1000px;
   margin: auto;
   flex-wrap: wrap;
+  background-color: #e6e6e6;
 }
 .produto-content-search {
   display: flex;
