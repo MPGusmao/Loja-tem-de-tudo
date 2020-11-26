@@ -80,7 +80,7 @@ export default {
   display: flex;
   width: 1000px;
   margin: auto;
-  background-color: white;
+  background-color: #e6e6e6;
   flex-direction: column;
   border-bottom-left-radius: 0.3rem;
   border-bottom-right-radius: 0.3rem;

@@ -25,12 +25,7 @@
               <span>Realizar Venda</span>
             </button>
           </router-link>
-          <router-link
-            :to="
-              '/analise?dateIni=' + data.DATE_INI + '&dateFim=' + data.DATE_FIM
-            "
-            class="vendaform-content-button-button"
-          >
+          <router-link v-if="data.DATE_INI && data.DATE_FIM" :to="'/analise?dateIni=' + data.DATE_INI + '&dateFim=' + data.DATE_FIM" class="vendaform-content-button-button">
             <button class="vendaform-button">
               <span>Relatório de Vendas</span>
             </button>
@@ -98,7 +93,7 @@ export default {
   display: flex;
   width: 1000px;
   margin: auto;
-  background-color: white;
+  background-color: #e6e6e6;
   flex-direction: column;
   border-bottom-left-radius: 0.3rem;
   border-bottom-right-radius: 0.3rem;

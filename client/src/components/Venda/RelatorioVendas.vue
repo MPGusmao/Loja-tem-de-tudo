@@ -140,7 +140,7 @@ export default {
   display: flex;
   width: 1000px;
   margin: auto;
-  background-color: white;
+  background-color: #e6e6e6;
   flex-direction: column;
   border-bottom-left-radius: 0.3rem;
   border-bottom-right-radius: 0.3rem;
@@ -160,9 +160,9 @@ export default {
   border-left-style: solid;
   border-top-style: solid;
   border-right: solid;
-  border-color: white;
+  border-color: #e6e6e6;
   border-width: 1rem 1rem 0.5rem 1rem;
-  background-color: #dbdfe0;
+  background-color: white;
   padding-bottom: 1rem;
   padding: 0.1rem 0.1rem 0rem 0.1rem;
   height: 500px;
