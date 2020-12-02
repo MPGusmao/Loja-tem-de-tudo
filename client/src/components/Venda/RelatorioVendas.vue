@@ -73,8 +73,6 @@ export default {
     this.data.DATE_INI = this.$route.query.dateIni;
     this.data.DATE_FIM = this.$route.query.dateFim;
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
-    const reducerSub = (accumulator, currentValue) =>
-      accumulator - currentValue;
 
     const config = {
       method: "post",
