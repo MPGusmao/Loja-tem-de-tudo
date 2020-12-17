@@ -4,6 +4,7 @@ applications:
   instances: 1
   disk_quota: 512M
   name: lojavirtual-dev
+  buildpack: sdk-for-nodejs
   routes:
     - route: lojavirtual-dev.mybluemix.net
  
