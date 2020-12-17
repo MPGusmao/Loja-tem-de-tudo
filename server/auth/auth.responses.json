@@ -1,0 +1,14 @@
+{
+    "NOT_LOGGEDIN": {
+        "error": {
+            "status": 401,
+            "message": "You are not authorized to access this resource"
+        }
+    },
+    "AUTH_ERROR": {
+        "error": {
+            "status": 500,
+            "message": "Something bad happened while logging you in. Try again later"
+        }
+    }
+}

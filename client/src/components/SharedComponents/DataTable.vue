@@ -53,7 +53,7 @@ export default {
   padding-top: 0.5rem;
 }
 .data-table-title span {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: bold;
   color: #0076ff;
 }

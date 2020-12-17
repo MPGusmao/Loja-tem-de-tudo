@@ -48,6 +48,7 @@ export default {
         this.$v.$touch();
       }
       this.$emit("input", event.target.value);
+      this.$emit("onChange", event.target.value);
     },
   },
 };

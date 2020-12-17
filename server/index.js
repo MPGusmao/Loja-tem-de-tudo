@@ -16,18 +16,20 @@ const db2Schemas = require('./database/db2.schemas');
 
 
 //API resources
+const auth = require('./auth');
+const login = require ('./login');
 const produto = require('./produto');
 const cliente = require('./cliente');
 const vendedor = require('./vendedor');
 const venda = require('./venda');
-const login = require('./login');
 
 
 
 module.exports = (app, dirname) => {
     const { Router } = express;
     const api = Router();
-    const port = process.env.PORT || 3000;
+    const port = process.env.PORT || 8080;
+    const { authRouter, validateToken } = auth(app, Router, config);
 
 
     const db2 = db2Middleware(config.db2);
@@ -44,11 +46,12 @@ module.exports = (app, dirname) => {
 
 
     //endpoints
+    api.use('/auth', authRouter);
+    api.use('/login', authRouter, login(Router));
     api.use('/produto', produto(Router));
     api.use('/cliente', cliente(Router));
     api.use('/vendedor', vendedor(Router));
     api.use('/venda', venda(Router));
-    api.use('/login', login(Router));
 
 
     // Serve static files
@@ -56,5 +59,5 @@ module.exports = (app, dirname) => {
 
 
     // server init
-    app.listen(port, () => logger.info(`Server on at ${port}`));
+    app.listen(port, () => logger.info(`Server running at ${port}`));
 };

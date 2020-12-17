@@ -2,22 +2,18 @@
   <div class="relatoriovenda">
     <div class="relatoriovenda-content">
       <HeaderTitle :title="'Relatório de Vendas'" />
-      <div class="relatoriovenda-content-item-item">
+      <div class="relatoriovenda-content-info">
         <span
           >Relatório de <strong>{{ data.DATE_INI }}</strong> a
           <strong>{{ data.DATE_FIM }}</strong></span
         >
-      </div>
-      <div class="relatoriovenda-content-item-item">
         <span v-if="data.TOTAL"
           >Total Vendido:
           <strong>{{ "R$: " + data.TOTAL.toFixed(2) }}</strong></span
         >
         <span v-if="!data.TOTAL"
-          >Total Vendido: <strong>{{ "0,00" }}</strong></span
+          >Total Vendido: <strong>{{ "R$: 0,00" }}</strong></span
         >
-      </div>
-      <div class="relatoriovenda-content-item-item">
         <span v-if="data.LUCRO"
           >Lucro dos Produtos:
           <strong> {{ "R$: " + data.LUCRO }} </strong></span
@@ -73,6 +69,8 @@ export default {
     this.data.DATE_INI = this.$route.query.dateIni;
     this.data.DATE_FIM = this.$route.query.dateFim;
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    const reducerSub = (accumulator, currentValue) =>
+      accumulator - currentValue;
 
     const config = {
       method: "post",
@@ -142,6 +140,17 @@ export default {
   flex-direction: column;
   border-bottom-left-radius: 0.3rem;
   border-bottom-right-radius: 0.3rem;
+}
+.relatoriovenda-content-info {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  text-align: center;
+  font-size: 1.1rem;
+  border: solid 1rem;
+  border-color:  #e6e6e6;
 }
 .relatoriovenda-content-item {
   display: flex;

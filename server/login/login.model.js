@@ -15,7 +15,7 @@ const getUserById = async (connection, email, password) => {
                 L.EMAIL = '${email}' AND L.PASSWORD = '${password}';`;
         const result = await connection.query(query)
         return { data: result, ...responses.GET_USER_BY_ID.success };
-    } catch (error) {
+    } catch (error) {console.log(error)
         return { error, ...responses.GET_USER_BY_ID.error };
     }
 };

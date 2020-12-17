@@ -1,15 +1,15 @@
 <template>
   <div class="produto">
     <div class="produto-content">
+      <HeaderTitle :title="'Produtos'" />
       <div class="produto-content-search">
-        <HeaderTitle :title="'Produtos'" />
-        <!-- <InputField
-          :placeholder="'Pesquisar produto'"
+        <InputField
+          :placeholder="'Pesquisar Produto'"
           v-model="search"
-          @input="resultQuery"
-        /> -->
+          @onChange="querySearch($event)"
+        />
       </div>
-      <div v-for="(item, index) in data" :key="index">
+      <div v-for="(item, index) in searchData" :key="index">
         <ProdutoItem :item="item" :href="'ProdutoForm'" />
       </div>
     </div>
@@ -18,18 +18,33 @@
 <script>
 import ProdutoItem from "./ProdutoItem.vue";
 import HeaderTitle from "../SharedComponents/HeaderTitle.vue";
+import InputField from "../SharedComponents/InputField.vue";
 import axios from "axios";
 export default {
   name: "Produto",
   components: {
     ProdutoItem,
     HeaderTitle,
+    InputField,
   },
   data() {
     return {
-      data: {},
+      data: [],
       search: null,
+      searchData: [],
     };
+  },
+  methods: {
+    querySearch(event) {
+      if (event !== "") {
+        this.searchData = this.data.filter((item) => {
+          const check =
+            item.NOME_PRODUTO.toLowerCase().match(event.toLowerCase(), "g") !==
+            null;
+          return check;
+        });
+      } else this.searchData = this.data;
+    },
   },
   mounted() {
     const config = {
@@ -39,6 +54,7 @@ export default {
     axios(config)
       .then((result) => {
         this.data = result.data.data;
+        this.searchData = result.data.data;
       })
       .catch((error) => {
         console.log(error);
