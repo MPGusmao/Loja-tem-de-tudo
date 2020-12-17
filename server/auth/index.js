@@ -1,9 +1,9 @@
-const passport = require('passport');
+const passport = require("passport");
 
-const authSetup = require('./auth.setup');
-const JWT = require('./jwt');
-const logger = require('../logger')();
-const user = require('../user/user.model');
+const authSetup = require("./auth.setup");
+const JWT = require("./jwt");
+const logger = require("../logger")();
+const user = require("../user/user.model");
 
 module.exports = (app, Router, config) => {
     const router = Router();
@@ -11,8 +11,14 @@ module.exports = (app, Router, config) => {
 
     authSetup(app, passport, config);
 
-    router.get('/login', passport.use('', { state: Math.random().toString(36).substr(2, 10) }));
-
+    router.get(
+        "/login",
+        passport.authenticate("passport-local", {
+            state: Math.random()
+                .toString(36)
+                .substr(2, 10)
+        })
+    );
 
     return { authRouter: router, validateToken: jwt.validate };
 };

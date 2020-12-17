@@ -9,7 +9,7 @@ const getDB = config => {
     };
 };
 
-const getUser = async (connection, email, password, callback) => {
+const getUser = async (connection, email, callback) => {
     try {
         const query = `
             SELECT
@@ -29,7 +29,7 @@ const getUser = async (connection, email, password, callback) => {
 const getStrategy = config => {
     const db = getDB(config);
     return new Strategy(function(username, password, cb) {
-        getUser(db.getConnection(), username, password, function(err, user) {
+        getUser(db.getConnection(), username, function(err, user) {
             if (err) {
                 return cb(err);
             }
