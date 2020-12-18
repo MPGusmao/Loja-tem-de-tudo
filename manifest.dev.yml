@@ -3,8 +3,7 @@ applications:
   memory: 256M
   instances: 1
   disk_quota: 256M
-  name: lojavirtual-dev
+  name: temdetudo
   buildpack: sdk-for-nodejs
   routes:
-    - route: lojavirtual-dev.mybluemix.net
- 
+    - route: temdetudo.us-south.cf.appdomain.cloud
